@@ -1,0 +1,29 @@
+<mat-grid-list class="backSpinner" *ngIf="exSpinner" cols="1" rowHeight="100%" gutterSize="0px">
+    <mat-grid-tile >
+      <div class="uploader-status">
+        <mat-spinner ></mat-spinner></div>
+       
+     </mat-grid-tile>
+  </mat-grid-list>
+
+
+<mat-toolbar @anmt1 *ngIf="!exSpinner" color="primary" class="navbar">
+    
+    <div>
+        <span>
+            <button mat-icon-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+        </span>
+         <span>My Angular Material Project</span> </div>
+     <app-tool-bar></app-tool-bar>
+</mat-toolbar>
+
+<mat-sidenav-container @anmt *ngIf="!exSpinner">
+    <mat-sidenav mode="push" [(opened)]="opened"  >
+        <app-side-nav></app-side-nav>     
+    </mat-sidenav>
+    <mat-sidenav-content>
+        
+        <router-outlet></router-outlet>
+    
+    </mat-sidenav-content>
+  </mat-sidenav-container>

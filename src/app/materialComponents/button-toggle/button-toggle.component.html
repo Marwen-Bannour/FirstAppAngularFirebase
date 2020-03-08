@@ -1,0 +1,51 @@
+<div class="container">
+
+<div class="mat-display-3">Button Toggle Component</div>
+<div>
+    this is default button toggle:
+    <div>
+    <mat-button-toggle #toggleBtn>toggle</mat-button-toggle>
+        button checked: {{toggleBtn.checked}}
+    </div>
+</div>
+<div>
+    this is default button toggle "cheked" :
+    <div>
+    <mat-button-toggle #toggleBtn1 checked>toggle</mat-button-toggle>
+        button checked: {{toggleBtn1.checked}}
+    </div>
+</div>
+<div>
+    this is default button toggle "disableRipple":
+    <div>
+    <mat-button-toggle #toggleBtn2 disableRipple>toggle</mat-button-toggle>
+        button checked: {{toggleBtn2.checked}}
+    </div>
+</div>
+<div>
+    this is default button toggle "disabled":
+    <div>
+    <mat-button-toggle #toggleBtn3 disabled>toggle</mat-button-toggle>
+        button checked: {{toggleBtn3.checked}}
+    </div>
+</div>
+
+<div>
+    this is button toggle groupe 
+    <mat-button-toggle-group #toggleGroup="matButtonToggleGroup">
+        <mat-button-toggle value="Angular">Angular</mat-button-toggle>
+        <mat-button-toggle value="React">React</mat-button-toggle>
+        <mat-button-toggle value="Vue">Vue</mat-button-toggle>
+    </mat-button-toggle-group>
+    {{toggleGroup.value}}
+</div>
+<div>
+    this is button toggle groupe multiple
+    <mat-button-toggle-group #toggleGroup1="matButtonToggleGroup" multiple>
+        <mat-button-toggle value="Angular">Angular</mat-button-toggle>
+        <mat-button-toggle value="React">React</mat-button-toggle>
+        <mat-button-toggle value="Vue">Vue</mat-button-toggle>
+    </mat-button-toggle-group>
+    {{toggleGroup1.value}}
+</div>
+</div>

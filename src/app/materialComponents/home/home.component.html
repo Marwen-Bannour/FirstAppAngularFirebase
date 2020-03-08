@@ -1,0 +1,147 @@
+
+
+<mat-grid-list  *ngIf='start'  cols="1" rowHeight="50%" gutterSize="0px">
+    <mat-grid-tile >
+
+      <app-home1></app-home1>
+    </mat-grid-tile>
+    <mat-grid-tile @anmt class="cardList" id="scrollMenu"  >
+      <div class="listCategories">
+     <button class="card" mat-raised-button routerLink= "/home/typography">
+       <div >
+         <div class="mat-title">
+           Typography
+         </div>
+         <div class="mat-subheading-2">
+          typography Component
+         </div>
+       </div>
+      </button>
+     <button class="card" mat-raised-button routerLink= "/home/button">
+       <div >
+         <div class="mat-title">
+          Button
+        </div>
+         <div class="mat-subheading-2">
+          Button component
+         </div>
+       </div>
+      </button>
+     <button class="card" mat-raised-button routerLink= "/home/button-toggle">
+       <div >
+         <div class="mat-title">
+          Button Toggle
+          </div>
+         <div class="mat-subheading-2">
+          Button Toggle component
+         </div>
+       </div>
+      </button>
+     <button class="card" mat-raised-button routerLink= "/home/badge">
+       <div >
+         <div class="mat-title">
+          Badge
+        </div>
+         <div class="mat-subheading-2">
+          Badge component
+         </div>
+       </div>
+      </button>
+     <button class="card" mat-raised-button routerLink= "/home/icon">
+       <div >
+         <div class="mat-title">
+          Icon
+        </div>
+         <div class="mat-subheading-2">
+          Icon component
+         </div>
+       </div>
+      </button>
+     <button class="card" mat-raised-button routerLink= "/home/progress-spinner">
+       <div >
+         <div class="mat-title">
+          Progress Spinner
+        </div>
+         <div class="mat-subheading-2">
+          Progress Spinner component
+         </div>
+       </div>
+      </button>
+     <button class="card" mat-raised-button routerLink= "/home/grid-list">
+       <div >
+         <div class="mat-title">
+           Grid list
+        </div>
+         <div class="mat-subheading-2">
+          Grid List component
+         </div>
+       </div>
+      </button>
+     <button class="card" mat-raised-button routerLink= "/home/expansion-Panel">
+       <div >
+         <div class="mat-title">
+          Expansion Panel
+        </div>
+         <div class="mat-subheading-2">
+          Expansion Panel component
+         </div>
+       </div>
+      </button>
+     <button class="card" mat-raised-button routerLink= "/home/cards">
+       <div >
+         <div class="mat-title">
+          Cards
+        </div>
+         <div class="mat-subheading-2">
+          Card component
+         </div>
+       </div>
+      </button>
+     <button class="card" mat-raised-button routerLink= "/home/tabs">
+       <div >
+         <div class="mat-title">
+          Tabs
+        </div>
+         <div class="mat-subheading-2">
+          Tabs component
+         </div>
+       </div>
+      </button>
+     <button class="card" mat-raised-button routerLink= "/home/stepper">
+       <div >
+         <div class="mat-title">
+           Stepper
+        </div>
+         <div class="mat-subheading-2">
+          Stepper component
+         </div>
+       </div>
+      </button>
+     <button class="card" mat-raised-button routerLink= "/home/input">
+       <div >
+         <div class="mat-title">
+          Input
+        </div>
+         <div class="mat-subheading-2">
+          Input component
+         </div>
+       </div>
+      </button>
+ 
+    </div>
+
+
+    
+    </mat-grid-tile>
+   
+  </mat-grid-list>
+
+  <mat-grid-list *ngIf='!start' cols="1" rowHeight="100%" gutterSize="0px">
+    <mat-grid-tile >
+  <div>
+     <app-home1></app-home1>
+     <div class="styleButtonStart"><button mat-raised-button (click)='getStarted()'>Get started</button></div>
+    </div>
+  </mat-grid-tile>
+   
+  </mat-grid-list>

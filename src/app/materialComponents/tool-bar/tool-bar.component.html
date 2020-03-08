@@ -1,0 +1,39 @@
+
+    <div>
+        <span routerLink= "/home"> <button mat-button ><samp class="mat-body-2">Home</samp></button></span>
+        
+        <span >
+            <span class="mat-body-2">{{user?.displayName}}</span>
+            <button
+             mat-mini-fab
+             class="profile"
+             color="primary"
+             [ngStyle]="{'background-image':'url('+user?.photoURL+')'}"
+             [matMenuTriggerFor]="menu">
+            </button>
+
+        </span>
+        
+    </div>
+    <mat-menu #menu="matMenu" xPosition="before" yPosition="below">
+        <mat-list>
+            <mat-list-item>
+                <div>
+                <div class="name">{{user?.displayName}}</div>
+                <div class="email">{{user?.email}}</div>
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+           
+        </mat-list>
+       <div class="logout">
+
+            
+            
+                
+             <button class="buttonLogout" (click)=" logout()"  mat-flat-button>Sign out</button>
+             
+        </div>
+
+      </mat-menu>
+     

@@ -1,0 +1,51 @@
+
+<div  class="loginPage centre">
+  <mat-card>
+    <mat-card-title>Sign in</mat-card-title>
+<mat-card-subtitle>
+ <div >or use your account</div> 
+
+  
+
+
+</mat-card-subtitle>
+<mat-card-content>
+ <button
+  (click)="loginGoogle()"
+  mat-mini-fab
+  class="googleImage"
+  >
+</button>
+ <div>
+  <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput required type="email">
+  
+</mat-form-field>
+</div>
+<div>
+<mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline">
+  <mat-label>Password</mat-label>
+  <input type="password" matInput required>
+  
+</mat-form-field>
+</div>
+</mat-card-content>
+<mat-card-actions>
+  <div>login</div>
+<div><button routerLink="/home" color="primary" mat-raised-button>Sign in</button></div>
+</mat-card-actions>
+<mat-card-footer>
+  By Marwen Bannour
+</mat-card-footer>
+  </mat-card>
+
+</div>
+<mat-grid-list  cols="1" rowHeight="50%" gutterSize="0px">
+    <mat-grid-tile >
+     </mat-grid-tile>
+    <mat-grid-tile class="secondGridtile" >
+    </mat-grid-tile>
+</mat-grid-list>
+
+ 

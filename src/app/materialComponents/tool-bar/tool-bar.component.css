@@ -1,0 +1,34 @@
+
+span{
+    padding-right: 1rem;
+}
+.profile{
+    
+    background-size: cover;
+    box-shadow: none;
+}
+
+.name{
+    width: 100%;
+    color: #202124;
+    font: 500 16px/22px Google Sans,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    letter-spacing: .29px;
+    margin: 0;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.email{
+color: #5f6368;
+font: 400 14px/19px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+letter-spacing: normal;
+text-align: center;
+text-overflow: ellipsis;
+overflow: hidden;}
+
+.logout{
+text-align: center;}
+
+.buttonLogout{
+    width: 100%;
+}

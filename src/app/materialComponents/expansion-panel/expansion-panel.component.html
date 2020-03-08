@@ -1,0 +1,32 @@
+<div class="container">
+
+<mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Angular fundamentals
+        </mat-panel-title>
+        <mat-panel-description>
+          total Duration / 3 hours
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  <p>this is the panel content. add course details.</p>
+    <mat-action-row>
+        <button mat-button>Enroll</button>
+    </mat-action-row>
+    </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Self aware panel
+        </mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{panelOpenState ? 'open' : 'closed'}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  </div>
