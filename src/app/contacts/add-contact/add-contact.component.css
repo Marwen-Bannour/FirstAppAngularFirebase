@@ -7,10 +7,8 @@
 .contact-form{
     width: 100%;
 }
-.icon-add{
-    background-image: url('../../../assets/img/contact.png');
-    background-size: cover;
-    height: 90px;
-    width: 25%;
-    margin: 0 0 16px;
+
+.add-contact-image{
+width: calc(20% + 30px);
+margin: 0 -16px 16px -16px;
 }

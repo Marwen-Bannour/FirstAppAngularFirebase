@@ -19,6 +19,7 @@ export class ListContactsComponent implements OnInit {
 
 
 const ELEMENT_DATA: Contact[] = [
+  { fullName: 'Marwen Bannour', mail: 'marwnbnnr@gmail.com', phone: "+21623366692"},
   { fullName: 'Marwen Bannour', mail: 'marwnbnnr@gmail.com', phone: "+21623366692"}
   
 ];
