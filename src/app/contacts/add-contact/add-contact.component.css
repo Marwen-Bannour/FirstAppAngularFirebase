@@ -1,0 +1,16 @@
+.add-contact{
+    width: 100%;
+    padding: 20px;
+    margin: 10px;
+    text-align: -webkit-center;
+}
+.contact-form{
+    width: 100%;
+}
+.icon-add{
+    background-image: url('../../../assets/img/contact.png');
+    background-size: cover;
+    height: 90px;
+    width: 25%;
+    margin: 0 0 16px;
+}

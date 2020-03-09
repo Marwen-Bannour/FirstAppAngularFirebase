@@ -1,11 +1,13 @@
 
 
 <mat-grid-list  *ngIf='start'  cols="1" rowHeight="50%" gutterSize="0px">
-    <mat-grid-tile >
-
-      <app-home1></app-home1>
+    <mat-grid-tile>
+    <div class="itemsCenter">
+      <app-home1 ></app-home1>
+    </div>
     </mat-grid-tile>
     <mat-grid-tile @anmt class="cardList" id="scrollMenu"  >
+      <div class="itemsCenter ">
       <div class="listCategories">
      <button class="card" mat-raised-button routerLink= "/home/typography">
        <div >
@@ -129,19 +131,18 @@
       </button>
  
     </div>
-
-
-    
+  </div>
     </mat-grid-tile>
-   
   </mat-grid-list>
 
   <mat-grid-list *ngIf='!start' cols="1" rowHeight="100%" gutterSize="0px">
     <mat-grid-tile >
-  <div>
+  <div class="itemsCenter">
+    <div>
      <app-home1></app-home1>
      <div class="styleButtonStart"><button mat-raised-button (click)='getStarted()'>Get started</button></div>
-    </div>
+  </div>
+  </div>
   </mat-grid-tile>
    
   </mat-grid-list>

@@ -41,6 +41,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { ContactsComponent } from './contacts/contacts.component';
+import { AddContactComponent } from './contacts/add-contact/add-contact.component';
+import { ListContactsComponent } from './contacts/list-contacts/list-contacts.component';
+
 
 @NgModule({
   declarations: [
@@ -63,6 +67,10 @@ import { MatListModule } from '@angular/material/list';
     StepperComponent,
     InputComponent,
     LoginComponent,
+    ContactsComponent,
+    AddContactComponent,
+    ListContactsComponent,
+   
     
   ],
   imports: [

@@ -31,6 +31,8 @@ mat-grid-tile{
 
 .listCategories{
 width: 100%;
+align-items: center;
+justify-content: center;
 }
 
 

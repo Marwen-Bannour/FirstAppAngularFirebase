@@ -15,6 +15,7 @@ import { TabsComponent } from './materialComponents/tabs/tabs.component';
 import { StepperComponent } from './materialComponents/stepper/stepper.component';
 import { InputComponent } from './materialComponents/input/input.component';
 import { LoginComponent } from './signup/login/login.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 
 const routes: Routes = [{
@@ -33,7 +34,8 @@ const routes: Routes = [{
     {path: 'cards', component: CardsComponent},
     {path: 'tabs', component: TabsComponent},
     {path: 'stepper', component: StepperComponent},
-    {path: 'input', component: InputComponent}
+    {path: 'input', component: InputComponent},
+    {path: 'contacts', component: ContactsComponent}
   ]
 }];
 
