@@ -23,7 +23,7 @@ import { BadgeComponent } from './materialComponents/badge/badge.component';
 import { ProgressSpinnerComponent } from './materialComponents/progress-spinner/progress-spinner.component';
 import { ToolBarComponent } from './materialComponents/tool-bar/tool-bar.component';
 import { SideNavComponent } from './materialComponents/side-nav/side-nav.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToolAndSideBarComponent } from './materialComponents/tool-and-side-bar/tool-and-side-bar.component';
 import { GridListComponent } from './materialComponents/grid-list/grid-list.component';
 import { HomeComponent } from './materialComponents/home/home.component';
@@ -79,6 +79,7 @@ import { ListContactsComponent } from './contacts/list-contacts/list-contacts.co
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     LayoutModule,

@@ -11,5 +11,5 @@ app-list-contacts{
     padding: 1rem;
 }
 mat-grid-tile{
-    height: 105px;
+    height: calc(100% - 250px);
 }
