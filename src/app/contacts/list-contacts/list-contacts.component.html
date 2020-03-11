@@ -1,7 +1,7 @@
 
-  <div class="mat-display-3" style="margin: 0 0 20px;">Contacts</div>
+ 
 
-<div class="example-container mat-elevation-z8" id="scrollTab">
+<div class="tab-list-contacts mat-elevation-z8" id="scrollTab">
   <table mat-table [dataSource]="dataSource" >
 
     <!-- Position Column -->
@@ -31,22 +31,20 @@
     <!-- Action Column -->
     <ng-container matColumnDef="action">
       <th class="actionElement" mat-header-cell *matHeaderCellDef> 
-         <button mat-icon-button 
-         class="mat-elevation-z2"
-         matTooltip="Add New Contact"
-         matTooltipPosition="above"
-         ><mat-icon class="add-icon">person_add</mat-icon></button>
-      </th>
+       </th>
       <td class="actionElement" mat-cell *matCellDef="let element"> 
-        <button mat-icon-button  matTooltip="Edit Contact"><mat-icon class="green-icon">edit</mat-icon></button>
-        <button mat-icon-button  matTooltip="Delete Contact" ><mat-icon class="Red-icon">delete_outline</mat-icon></button>
+        
+        <button class="Green" mat-stroked-button  matTooltip="Edit Contact">Edit</button>
+        <button class="Red" mat-stroked-button  matTooltip="Edit Contact">Delete</button>
+        <!-- <button mat-icon-button  matTooltip="Edit Contact"><mat-icon class="green-icon">edit</mat-icon></button>
+        <button mat-icon-button  matTooltip="Delete Contact" ><mat-icon class="Red-icon">delete_outline</mat-icon></button> -->
       </td>
       
   </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-    class="example-element-row"
+    class="tab-list-contacts-row"
      ></tr>
     </table>
 </div>

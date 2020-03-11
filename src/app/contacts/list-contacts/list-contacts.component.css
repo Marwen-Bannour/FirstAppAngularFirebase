@@ -1,26 +1,29 @@
+button{
+  margin-left: 10px;
+}
 .listContact{
     width: 100%;
     padding: 1rem;
     position: absolute;
 }
 
-.example-container {
-    height: 460px;
+.tab-list-contacts {
+    height: 430px;
     overflow: auto;
   }
   
   table {
     width: 100%;
   }
-  tr.example-element-row:not(.example-expanded-row):hover {
+  tr.tab-list-contacts-row:not(.example-expanded-row):hover {
     background: whitesmoke;
   }
   
-  tr.example-element-row:not(.example-expanded-row):active {
+  tr.tab-list-contacts-row:not(.example-expanded-row):active {
     background: #f5f5f52d;
   }
   
-  .example-element-row td {
+  .tab-list-contacts-row td {
     border-bottom-width: 0;
   }
 
@@ -31,17 +34,6 @@
   .actionElement{
     text-align: right;
   }
-
-  .green-icon {
-    color:   #43a047;
-}
-.Red-icon{
-  color: #e53935;
-}
-.add-icon{
-  color:   #3761ca;;
-}
-
 
 
 #scrollTab::-webkit-scrollbar-track

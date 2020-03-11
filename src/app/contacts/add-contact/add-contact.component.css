@@ -1,8 +1,9 @@
 .add-contact{
+    FONT-WEIGHT: 200;
     width: 100%;
     height: 90%;
     padding: 20px;
-    margin: 10px;
+    margin: 20px;
     text-align: -webkit-center;
 }
 .contact-form{
@@ -22,6 +23,7 @@ margin: 0 -16px 16px -16px;
     position: relative;
      width: 100%;
 }
+
 button{
     position: relative;
     width: 100%;

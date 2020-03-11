@@ -27,4 +27,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: h
   margin: 0;
  }
 
+.Green {
+  color:   #00c853;
+}
+.Red{
+color: #d50000;
+}
+.Blue{
+color:   #3761ca;;
+}
  

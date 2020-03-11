@@ -2,14 +2,33 @@
 
   
  
-<mat-grid-list cols="3" rowHeight="1:1"  gutterSize="10px">
+<mat-grid-list [cols]="cols" rowHeight="580px"  gutterSize="10px">
    
     <mat-grid-tile  colspan="2">
-      
-      <app-list-contacts></app-list-contacts>
-    
+      <div class="list-Contacts-container">
+        
+          <section >
+            <h1 class="mat-display-3" style="margin: 0 0 15px;">Contacts</h1>
+          </section>
+         <div *ngIf="cols != 3" class="button-add">
+            <button mat-icon-button 
+            class="mat-elevation-z2"
+            matTooltip="Add New Contact"
+            matTooltipPosition="above"
+            (click)="openAdd()"
+            ><mat-icon class="add-icon" color="primary">person_add</mat-icon></button></div>
+            <app-list-contacts></app-list-contacts>
+      </div>
     </mat-grid-tile>
-     <mat-grid-tile>
+     <mat-grid-tile *ngIf="cols == 3">
+     <div class="button-close">
+      <button mat-icon-button 
+      class="mat-elevation-z1 icon-close"
+      matTooltip="close"
+      matTooltipPosition="below"
+      (click)="closeAdd()"
+      ><mat-icon  class="Red">close</mat-icon></button>
+    </div>
        <app-add-contact></app-add-contact>
      </mat-grid-tile>
     
