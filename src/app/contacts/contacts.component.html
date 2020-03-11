@@ -20,7 +20,7 @@
             <app-list-contacts></app-list-contacts>
       </div>
     </mat-grid-tile>
-     <mat-grid-tile *ngIf="cols == 3">
+     <mat-grid-tile @flyInOut *ngIf="cols == 3">
      <div class="button-close">
       <button mat-icon-button 
       class="mat-elevation-z1 icon-close"
