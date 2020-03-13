@@ -4,7 +4,23 @@
         <div class="mat-display-1" style="margin: 30px 0 15px;">
               New Contact
         </div>
-                 <div><img class="add-contact-image" src="../../../assets/img/contact.png"></div>            
+                 <!-- <div style="background-color: blue;"><img class="add-contact-image" src="../../../assets/img/contact.png"></div>             -->
+                <div>
+                 <div class="contact-picture"
+                 [style.background]="file">
+                   <div class="contact-picture-add">
+                    <input
+                    style="display: none"
+                    type="file"
+                    accept="image/*"
+                    (change)="onFileChanged($event)"
+                    #fileInput>
+                     <button  (click)="fileInput.click()" class="btn-picture-btn" mat-icon-button  >
+                       <mat-icon class="icon-add">add_a_photo</mat-icon>
+                      </button> 
+                    </div>
+                   </div> 
+                 </div>          
                 <div>
                   <form>
                      <mat-form-field class="contact-form"  floatLabel="auto" hideRequiredMarker appearance="outline">
@@ -36,7 +52,7 @@
                         </mat-error>
                       </mat-form-field>
                      <div class="button-add">
-                        <button mat-stroked-button >Add</button>
+                        <button class="submit-btn" mat-raised-button color="primary">Add</button>
                      </div>
                      
                     </form>

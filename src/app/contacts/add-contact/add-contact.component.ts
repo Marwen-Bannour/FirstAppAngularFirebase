@@ -21,10 +21,15 @@ export class AddContactComponent implements OnInit {
     Validators.pattern('[0-9]*')
   ]);
 
+  file ;
   constructor() { }
  
 
   ngOnInit() {
   }
 
+  onFileChanged(event) {
+    this.file = event.target.files[0];
+    console.log("hello"+this.file);
+  }
 }
