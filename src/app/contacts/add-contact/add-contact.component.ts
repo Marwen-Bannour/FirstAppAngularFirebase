@@ -21,7 +21,8 @@ export class AddContactComponent implements OnInit {
     Validators.pattern('[0-9]*')
   ]);
 
-  file ;
+  fileurl ;
+  file
   constructor() { }
  
 
@@ -30,6 +31,11 @@ export class AddContactComponent implements OnInit {
 
   onFileChanged(event) {
     this.file = event.target.files[0];
-    console.log("hello"+this.file);
+    console.log(this.file);
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+         this.fileurl = event.target.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
   }
 }

@@ -10,7 +10,8 @@
     width: 100%;
 }
 .contact-picture{
-    background-color: blue;
+    background-color: #eeeeee;
+    background-size: cover;
     width: 110px;
     height: 110px;
     margin: 0 -16px 9px -16px;
