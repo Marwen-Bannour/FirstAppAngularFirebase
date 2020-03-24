@@ -55,3 +55,16 @@ button{
   background-color: #bdbdbd;
 	
 }
+
+.contact-picture{
+  background-color: #eeeeee;
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  margin: 0 -16px 9px -16px;
+  border-radius: 50%;
+  border-color: #e0e0e0;
+  border-style: solid;
+  border-width: 2px;
+  margin: 8px;
+}

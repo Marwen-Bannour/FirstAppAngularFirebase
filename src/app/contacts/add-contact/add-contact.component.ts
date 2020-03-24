@@ -21,7 +21,7 @@ export class AddContactComponent implements OnInit {
     Validators.pattern('[0-9]*')
   ]);
 
-  fileurl ;
+  fileUrl ;
   file
   constructor() { }
  
@@ -34,7 +34,7 @@ export class AddContactComponent implements OnInit {
     console.log(this.file);
     const reader = new FileReader();
     reader.onload = (event: any) => {
-         this.fileurl = event.target.result;
+         this.fileUrl = event.target.result;
     };
     reader.readAsDataURL(event.target.files[0]);
   }
