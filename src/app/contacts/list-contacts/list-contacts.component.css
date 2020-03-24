@@ -68,3 +68,17 @@ button{
   border-width: 2px;
   margin: 8px;
 }
+
+.searchBtn{
+  z-index: 1010 !important;
+}
+.searchContact{
+    margin-left: 10px;
+    margin-top: 4px;
+    width: 40%;
+    font-size: 14px;
+    z-index: 1010;
+}
+::ng-deep.mat-menu-panel {
+    overflow: hidden;
+}
