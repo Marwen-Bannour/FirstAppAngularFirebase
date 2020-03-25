@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Contact } from 'src/app/class/contact';
 import {MatTableDataSource} from '@angular/material/table';
 import { trigger, state, transition, style, animate } from '@angular/animations';
+import { ContactsService } from 'src/app/services/contacts.service';
 
 
 @Component({
@@ -25,11 +26,11 @@ export class ListContactsComponent implements OnInit {
   displayedColumns =  ['photo', 'fullName','mail','phone', 'action'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   search = false;
- 
-  constructor() { }
+   
+  constructor(private contactServ: ContactsService) { }
 
   ngOnInit() {
-    
+   
   }
   searchOpen(){
     this.search = true;

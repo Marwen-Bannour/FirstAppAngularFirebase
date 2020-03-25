@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFirestore , AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 
 
@@ -44,6 +46,7 @@ import { MatListModule } from '@angular/material/list';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AddContactComponent } from './contacts/add-contact/add-contact.component';
 import { ListContactsComponent } from './contacts/list-contacts/list-contacts.component';
+
 
 
 @NgModule({
@@ -88,10 +91,12 @@ import { ListContactsComponent } from './contacts/list-contacts/list-contacts.co
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    AngularFirestoreModule,
+    AngularFireDatabaseModule
    
 
   ],
-  providers: [],
+  providers: [AngularFirestore ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
