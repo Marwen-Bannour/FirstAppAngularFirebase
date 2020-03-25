@@ -16,7 +16,7 @@
                     accept="image/*"
                     (change)="onFileChanged($event)"
                     #fileInput>
-                     <button  (click)="fileInput.click()" class="btn-picture-btn" mat-icon-button  >
+                     <button type="button" (click)="fileInput.click()" class="btn-picture-btn" mat-icon-button  >
                        <mat-icon class="icon-add">add_a_photo</mat-icon>
                       </button> 
                     </div>
@@ -28,7 +28,7 @@
                         <mat-label>Full name</mat-label>
                         <input matInput 
                         formControlName="fullNameFormControl"
-                         required
+                         
                          >
                         <mat-error *ngIf="formControls.phoneFormControl.hasError('required')">
                           Full name is <strong>required</strong>
@@ -39,7 +39,7 @@
                         <mat-label>Email</mat-label>
                         <input matInput 
                         formControlName="emailFormControl"
-                           required
+                           
                           >
                         <mat-error *ngIf="formControls.emailFormControl.hasError('email') && !formControls.emailFormControl.hasError('required')">
                           Please enter a valid email address
@@ -53,7 +53,7 @@
                         <mat-label>Phone Number</mat-label>
                         <input  matInput
                           formControlName="phoneFormControl"
-                           required
+                           
                             >
                         <mat-error *ngIf="formControls.phoneFormControl.hasError('pattern') && !formControls.phoneFormControl.hasError('required')">
                           Please enter a valid phone number
@@ -65,6 +65,7 @@
 
                      <div class="button-add">
                         <button class="submit-btn" mat-raised-button color="primary" type="submit">Add</button>
+                        <button class="reset-btn" mat-raised-button  color="warn" type="reset" (click)="resetForm()"><mat-icon>refresh</mat-icon></button>
                      </div>
                     </div>
 

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Contact } from 'src/app/class/contact';
 import {MatTableDataSource} from '@angular/material/table';
-import { trigger, state, transition, style, animate } from '@angular/animations';
+import { trigger, transition, style, animate } from '@angular/animations';
 import { ContactsService } from 'src/app/services/contacts.service';
+import {MatSort} from '@angular/material/sort';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,24 +15,43 @@ import { ContactsService } from 'src/app/services/contacts.service';
     trigger('searchEnterLeave', [
       transition(':enter', [
         style({width: '0',opacity: 0}),
-        animate('600ms', style({ width: '30%',opacity: 1})),
+        animate('600ms', style({ width: '60%',opacity: 1})),
       ]),
       transition(':leave', [
-        style({ width: '30%',opacity: 1 }),
+        style({ width: '60%',opacity: 1 }),
         animate('400ms', style({ width: '0',opacity: 0 })),
       ]),
     ])
   ]
 })
 export class ListContactsComponent implements OnInit {
-  displayedColumns =  ['photo', 'fullName','mail','phone', 'action'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  list:Contact[];
+  displayedColumns : string[]=  ['photo', 'fullName','mail','phone', 'action'];
+  dataSource = new MatTableDataSource(this.list);
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  
   search = false;
+  
+  
    
-  constructor(private contactServ: ContactsService) { }
+  constructor(private contactServ: ContactsService,
+              private toastr:ToastrService) { }
 
   ngOnInit() {
-   
+    
+    this.contactServ.getContacts().subscribe(data => { 
+      this.list = data.map(item => {
+      return {
+        id: item.payload.doc.id,
+        ... item.payload.doc.data()
+      } as Contact;
+    })
+      this.dataSource = new MatTableDataSource(this.list);
+      this.dataSource.sort = this.sort;
+      console.log(this.dataSource.data);
+    })
+    
+
   }
   searchOpen(){
     this.search = true;
@@ -44,11 +65,16 @@ export class ListContactsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  onEdit(cnt: Contact) {
+    this.contactServ.formData = Object.assign({}, cnt);
+  }
+
+  onDelete(id: string) {
+    if (confirm("Are you sure to delete this record?")) {
+      this.contactServ.deleteContact(id);
+      this.toastr.warning('Deleted successfully','EMP. Register');
+    }
+  }
+ 
 }
 
-
-const ELEMENT_DATA: Contact[] = [
-  { photo:'' ,fullName: 'Marwen Bannour', mail: 'marwnbnnr@gmail.com', phone: "+21623366692"},
-  { photo:'' ,fullName: 'fawzi Bannour', mail: 'fawzibnnr@gmail.com', phone: "+21623999854"}
-  
-];

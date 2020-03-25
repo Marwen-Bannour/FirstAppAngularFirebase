@@ -7,6 +7,7 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { AngularFirestore , AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -92,7 +93,8 @@ import { ListContactsComponent } from './contacts/list-contacts/list-contacts.co
     MatIconModule,
     MatListModule,
     AngularFirestoreModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    ToastrModule.forRoot()
    
 
   ],

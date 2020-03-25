@@ -19,7 +19,8 @@ import
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSortModule
 
   } from '@angular/material';
 
@@ -44,7 +45,8 @@ const MaterialComponents = [
   MatFormFieldModule,
   MatInputModule,
   MatTableModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatSortModule
 
 
   

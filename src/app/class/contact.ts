@@ -1,6 +1,8 @@
 export class Contact {
-   photo;
+   id: string;
+  
    fullName: string;
    mail: string;
    phone: string;
+   photo: string;
 }

@@ -53,12 +53,18 @@ margin: 0 -16px 16px -16px;
     display: inline-flex;
     align-items: baseline;
     box-sizing: border-box;
-    display: inline-block;
+    display: flex;
+    justify-content: space-between;
     position: relative;
      width: 100%;
 }
 
 .submit-btn{
     position: relative;
-    width: 100%;
+    width: calc(100% - 65px);
+}
+.reset-btn{
+    position: relative;
+    width: 60px;
+    min-width: 60px !important;
 }
