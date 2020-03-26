@@ -37,10 +37,10 @@ mat-grid-tile{
     width: 31px !important;
     height: 31px !important;
     line-height: 30px !important;
-    border-radius: 50%;
+    /* border-radius: 50%;
     border-color: #d5000045;
     border-style: solid;
-    border-width: 0.5px;
+    border-width: 0.5px; */
 }
 .icon-close-color
 {

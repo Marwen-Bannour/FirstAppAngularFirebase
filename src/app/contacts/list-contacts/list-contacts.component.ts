@@ -43,7 +43,7 @@ export class ListContactsComponent implements OnInit {
       this.list = data.map(item => {
       return {
         id: item.payload.doc.id,
-        ... item.payload.doc.data()
+        ... <any>item.payload.doc.data()
       } as Contact;
     })
       this.dataSource = new MatTableDataSource(this.list);

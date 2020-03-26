@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import { AngularFirestore , AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFireStorageModule } from "@angular/fire/storage";
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -37,13 +38,7 @@ import { TabsComponent } from './materialComponents/tabs/tabs.component';
 import { StepperComponent } from './materialComponents/stepper/stepper.component';
 import { InputComponent } from './materialComponents/input/input.component';
 import { LoginComponent } from './signup/login/login.component';
-
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AddContactComponent } from './contacts/add-contact/add-contact.component';
 import { ListContactsComponent } from './contacts/list-contacts/list-contacts.component';
@@ -87,18 +82,12 @@ import { ListContactsComponent } from './contacts/list-contacts/list-contacts.co
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     ToastrModule.forRoot()
-   
-
   ],
-  providers: [AngularFirestore ],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

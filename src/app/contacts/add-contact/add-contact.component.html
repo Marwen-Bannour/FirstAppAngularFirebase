@@ -15,6 +15,7 @@
                     type="file"
                     accept="image/*"
                     (change)="onFileChanged($event)"
+                    formControlName="photoFormControl"
                     #fileInput>
                      <button type="button" (click)="fileInput.click()" class="btn-picture-btn" mat-icon-button  >
                        <mat-icon class="icon-add">add_a_photo</mat-icon>
