@@ -19,6 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -42,7 +43,8 @@ const MaterialComponents = [
   MatInputModule,
   MatTableModule,
   MatTooltipModule,
-  MatSortModule
+  MatSortModule,
+  MatSnackBarModule
 
 
   

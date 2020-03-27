@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output , EventEmitter  } from '@angular/core';
 import { Contact } from 'src/app/class/contact';
 import {MatTableDataSource} from '@angular/material/table';
 import { trigger, transition, style, animate } from '@angular/animations';
@@ -28,7 +28,9 @@ export class ListContactsComponent implements OnInit {
   list:Contact[];
   displayedColumns : string[]=  ['photo', 'fullName','mail','phone', 'action'];
   dataSource = new MatTableDataSource(this.list);
+
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @Output() outEvent = new EventEmitter<number>();
   
   search = false;
   
@@ -74,6 +76,18 @@ export class ListContactsComponent implements OnInit {
       this.contactServ.deleteContact(id);
       this.toastr.warning('Deleted successfully','EMP. Register');
     }
+  }
+
+  edit(elm : Contact){
+    this.outEvent.emit(3);
+    console.log("edit function: "+ elm.id);
+    this.contactServ.formData = Object.assign({}, elm);
+    this.contactServ.contactform.controls['idFormControl'].setValue(elm.id) ;
+    this.contactServ.contactform.controls['fullNameFormControl'].setValue(elm.fullName) ;
+    this.contactServ.contactform.controls['emailFormControl'].setValue(elm.mail) ;
+    this.contactServ.contactform.controls['phoneFormControl'].setValue(elm.phone) ;
+    this.contactServ.contactform.controls['photoFormControl'].setValue(elm.photo) ;
+    this.contactServ.fileUrl = elm.photo ;
   }
  
 }

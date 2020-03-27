@@ -17,7 +17,7 @@
             matTooltipPosition="above"
             (click)="openAdd()"
             ><mat-icon class="add-icon" color="primary">person_add</mat-icon></button></div>
-            <app-list-contacts></app-list-contacts>
+            <app-list-contacts (outEvent)=" receiveCols($event)"></app-list-contacts>
       </div>
     </mat-grid-tile>
      <mat-grid-tile @flyInOut *ngIf="cols == 3">
@@ -30,7 +30,7 @@
       color="warn"
       ><mat-icon  class="icon-close-color">close</mat-icon></button>
     </div>
-       <app-add-contact></app-add-contact>
+       <app-add-contact [ActionEvent]="ActionEvent"></app-add-contact>
      </mat-grid-tile>
     
   </mat-grid-list>

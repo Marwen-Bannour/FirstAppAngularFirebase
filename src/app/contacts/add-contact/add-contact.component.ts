@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ContactsService } from 'src/app/services/contacts.service';
 import { Contact } from 'src/app/class/contact';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from "rxjs/operators";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -13,91 +14,125 @@ import { finalize } from "rxjs/operators";
   styleUrls: ['./add-contact.component.css'] 
 })
 export class AddContactComponent implements OnInit {
-contactform = new FormGroup({
-  fullNameFormControl : new FormControl('', [
-    Validators.required    
-  ]),
-  emailFormControl : new FormControl('', [
-    Validators.required,
-    Validators.email
-  ]),
-  phoneFormControl : new FormControl('', [
-    Validators.required,
-    Validators.pattern('[0-9]*')
-  ]),
-  photoFormControl : new FormControl(''),
-});
-formControls = this.contactform.controls;
+
+  @Input() ActionEvent : string;
+
+  contactData : Contact ;
   
-  fileUrl ;
   firebaseUrl = '';
-  file;
+  
   contact = new Contact();
-  constructor(private contactService : ContactsService,
-              private storage: AngularFireStorage) { }
+  constructor(public contactService : ContactsService,
+              private storage: AngularFireStorage,
+              private _snackBar: MatSnackBar) { }
  
 
   ngOnInit() {
-   
+     
   }
 
   onFileChanged(event) {
-    this.file = event.target.files[0];
-    console.log(this.file);
+    this.contactService.file = event.target.files[0];
+    console.log(this.contactService.file);
     const reader = new FileReader();
     reader.onload = (event: any) => {
-         this.fileUrl = event.target.result;
+         this.contactService.fileUrl = event.target.result;
     };
     reader.readAsDataURL(event.target.files[0]);
   }
 
 
   addContact(){
-     if (this.contactform.valid) {
+     if (this.contactService.contactform.valid) {
        
-       if(!this.file){
+       if(!this.contactService.file){
       const data = {
-        fullName : this.contactform.value['fullNameFormControl'],
-        mail : this.contactform.value['emailFormControl'],
-        phone : this.contactform.value['phoneFormControl'],
+        fullName : this.contactService.contactform.value['fullNameFormControl'],
+        mail : this.contactService.contactform.value['emailFormControl'],
+        phone : this.contactService.contactform.value['phoneFormControl'],
         photo :  null
       }
       console.log(data);
-      this.contactService.addContact(data);
+      this.contactService.addContact(data).then( res =>  this.openSnackBar("Contact was successfully added","OK"))
       this.resetForm();
     }
-    if(this.file){
-      this.addContactWhithPoto();
+    if(this.contactService.file){
+      this.addContactWhithPhoto();
     }
     }else{console.log("errors");}
    }
 
-  addContactWhithPoto(){
-    var filePath = `${this.file.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+  addContactWhithPhoto(){
+    var filePath = `${this.contactService.file.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
     const fileRef = this.storage.ref(filePath);
-    this.storage.upload(filePath, this.file).snapshotChanges().pipe(
+    this.storage.upload(filePath, this.contactService.file).snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
           const data = {
-            fullName : this.contactform.value['fullNameFormControl'],
-            mail : this.contactform.value['emailFormControl'],
-            phone : this.contactform.value['phoneFormControl'],
+            fullName : this.contactService.contactform.value['fullNameFormControl'],
+            mail : this.contactService.contactform.value['emailFormControl'],
+            phone : this.contactService.contactform.value['phoneFormControl'],
             photo :  url
           }
         console.log(data);
-        this.contactService.addContact(data);
+        this.contactService.addContact(data).then( res =>  this.openSnackBar("Contact was successfully added","OK"))
         this.resetForm();
         })
       })
     ).subscribe();
   }
   
+ editContact(){
+  if (this.contactService.contactform.valid) {
+       
+    
+   const data = {
+     id : this.contactService.contactform.value['idFormControl'],
+     fullName : this.contactService.contactform.value['fullNameFormControl'],
+     mail : this.contactService.contactform.value['emailFormControl'],
+     phone : this.contactService.contactform.value['phoneFormControl'],
+     photo : this.contactService.contactform.value['photoFormControl']
+   }
+   console.log(data);
+   
+   if (data.photo == this.contactService.fileUrl){
+     this.contactService.editContact(data.id,data).then( val => 
+       this.openSnackBar("Contact was successfully changed","OK")
+      )
+     }else{
+      var filePath = `${this.contactService.file.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.contactService.file).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            data.photo =  url;
+          this.contactService.editContact(data.id,data).then( val => 
+            this.openSnackBar("Contact was successfully changed","OK")
+          )
+         })
+        })
+      ).subscribe();
+    }
+  
+   
+ }
+}
+
   resetForm(){
-    this.contactform.reset();
-    Object.keys(this.contactform.controls).forEach(key => {
-            this.contactform.controls[key].setErrors(null)
+    this.contactService.contactform.reset();
+    Object.keys(this.contactService.contactform.controls).forEach(key => {
+            this.contactService.contactform.controls[key].setErrors(null)
           });
-    this.fileUrl = null ;
-    this.file= null ;
+    this.contactService.fileUrl = null ;
+    this.contactService.file= null ;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message,action, {
+      duration: 2000,
+      horizontalPosition:'center'
+    });
   }
 }
+  
+

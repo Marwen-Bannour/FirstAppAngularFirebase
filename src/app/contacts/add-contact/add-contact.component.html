@@ -1,13 +1,21 @@
 
 <div class="itemsCenter">
     <div class="add-contact mat-elevation-z5">
-        <div class="mat-display-1" style="margin: 30px 0 15px;">
-              New Contact
+        <div class="mat-display-1" style="margin: 30px 0 15px;" *ngIf="ActionEvent == 'add' ">
+              Add Contact
         </div>
-            <form [formGroup]="contactform" (ngSubmit)="addContact()">
-                
+        <div class="mat-display-1" style="margin: 30px 0 15px;" *ngIf="ActionEvent == 'edit' ">
+              Edit Contact
+        </div>
+            <form [formGroup]="contactService.contactform" >
+              <input  style="display: none"
+                formControlName="idFormControl"
+              >
+              <input   style="display: none"
+                formControlName="photoFormControl"
+              >
                  <div class="contact-picture"
-                 [ngStyle]="{ 'background-image': !fileUrl ? 'url(../../../assets/img/profile.png)' : 'url(' + fileUrl + ')' }"
+                 [ngStyle]="{ 'background-image': !contactService.fileUrl ? 'url(../../../assets/img/profile.png)' : 'url(' + contactService.fileUrl + ')'}"
                  >
                    <div class="contact-picture-add">
                     <input
@@ -15,7 +23,7 @@
                     type="file"
                     accept="image/*"
                     (change)="onFileChanged($event)"
-                    formControlName="photoFormControl"
+                    
                     #fileInput>
                      <button type="button" (click)="fileInput.click()" class="btn-picture-btn" mat-icon-button  >
                        <mat-icon class="icon-add">add_a_photo</mat-icon>
@@ -29,9 +37,8 @@
                         <mat-label>Full name</mat-label>
                         <input matInput 
                         formControlName="fullNameFormControl"
-                         
-                         >
-                        <mat-error *ngIf="formControls.phoneFormControl.hasError('required')">
+                        >
+                        <mat-error *ngIf="contactService.formControls.fullNameFormControl.hasError('required')">
                           Full name is <strong>required</strong>
                         </mat-error>
                       </mat-form-field>
@@ -42,10 +49,10 @@
                         formControlName="emailFormControl"
                            
                           >
-                        <mat-error *ngIf="formControls.emailFormControl.hasError('email') && !formControls.emailFormControl.hasError('required')">
+                        <mat-error *ngIf="contactService.formControls.emailFormControl.hasError('email') && !contactService.formControls.emailFormControl.hasError('required')">
                           Please enter a valid email address
                         </mat-error>
-                        <mat-error *ngIf="formControls.emailFormControl.hasError('required')">
+                        <mat-error *ngIf="contactService.formControls.emailFormControl.hasError('required')">
                           Email is <strong>required</strong>
                         </mat-error>
                      </mat-form-field>
@@ -56,17 +63,23 @@
                           formControlName="phoneFormControl"
                            
                             >
-                        <mat-error *ngIf="formControls.phoneFormControl.hasError('pattern') && !formControls.phoneFormControl.hasError('required')">
+                        <mat-error *ngIf="contactService.formControls.phoneFormControl.hasError('pattern') && !contactService.formControls.phoneFormControl.hasError('required') ">
                           Please enter a valid phone number
                         </mat-error>
-                        <mat-error *ngIf="formControls.phoneFormControl.hasError('required')">
+                        <mat-error *ngIf="contactService.formControls.phoneFormControl.hasError('minlength') && !contactService.formControls.phoneFormControl.hasError('pattern') && !contactService.formControls.phoneFormControl.hasError('required')">
+                          Phone 08 character minimum
+                        </mat-error>
+                        <mat-error *ngIf="contactService.formControls.phoneFormControl.hasError('required')">
                           phone number is <strong>required</strong>
                         </mat-error>
                       </mat-form-field>
 
-                     <div class="button-add">
-                        <button class="submit-btn" mat-raised-button color="primary" type="submit">Add</button>
-                        <button class="reset-btn" mat-raised-button  color="warn" type="reset" (click)="resetForm()"><mat-icon>refresh</mat-icon></button>
+                     <div class="button-add" *ngIf="ActionEvent == 'add' ">
+                        <button class="submit-btn" mat-raised-button color="primary" type="submit" (click)="addContact()">Add</button>
+                        <button class="reset-btn" mat-raised-button  color="warn" type="reset" (click)=" resetForm()"><mat-icon>refresh</mat-icon></button>
+                     </div>
+                     <div class="button-edit" *ngIf="ActionEvent == 'edit' ">
+                        <button class="edit-btn" mat-raised-button type="button" (click)="editContact()">Edit</button>
                      </div>
                     </div>
 

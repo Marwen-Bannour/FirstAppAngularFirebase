@@ -68,3 +68,20 @@ margin: 0 -16px 16px -16px;
     width: 60px;
     min-width: 60px !important;
 }
+
+.button-edit{
+    display: inline-flex;
+    align-items: baseline;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+     width: 100%;
+}
+
+.edit-btn{
+    position: relative;
+    width: 100%;
+    background-color: #43a047;
+    color: white;
+}

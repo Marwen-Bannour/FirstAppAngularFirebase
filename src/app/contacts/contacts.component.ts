@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import{trigger, transition, animate, style, state} from '@angular/animations';
+import { ContactsService } from '../services/contacts.service';
 
 @Component({
   selector: 'app-contacts',
@@ -19,15 +20,32 @@ import{trigger, transition, animate, style, state} from '@angular/animations';
   ]
 })
 export class ContactsComponent implements OnInit {
-  cols = 2 ;
-  constructor() { }
+  cols : number = 2 ;
+  ActionEvent: String ;
+  constructor( private contactService : ContactsService) { }
 
   ngOnInit() {
   }
   openAdd(){
     this.cols = 3 ;
+    this.ActionEvent= "add";
   }
   closeAdd(){
     this.cols = 2 ;
+    this.ActionEvent= null ;
+    this.resetForm();
+  }
+  receiveCols($event){ 
+    console.log("receive: "+$event);
+    this.cols = $event ;
+    this.ActionEvent="edit";
+  }
+  resetForm(){
+    this.contactService.contactform.reset();
+    Object.keys(this.contactService.contactform.controls).forEach(key => {
+            this.contactService.contactform.controls[key].setErrors(null)
+          });
+    this.contactService.fileUrl = null ;
+    this.contactService.file= null ;
   }
 }
