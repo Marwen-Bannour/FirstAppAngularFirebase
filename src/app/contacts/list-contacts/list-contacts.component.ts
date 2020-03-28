@@ -17,14 +17,14 @@ import { ContactDetailsComponent } from './contact-details/contact-details.compo
     trigger('searchEnterLeave', [
       transition(':enter', [
         style({width: '0',opacity: 0}),
-        animate('600ms', style({ width: '60%',opacity: 1})),
+        animate('600ms', style({ width: '100%',opacity: 1})),
       ]),
       transition(':leave', [
-        style({ width: '60%',opacity: 1 }),
-        animate('400ms', style({ width: '0',opacity: 0 })),
+        style({ width: '100%',opacity: 1 }),
+        animate('400ms', style({ width: '0px',opacity: 0 })),
       ]),
     ])
-  ]
+  ],
 })
 export class ListContactsComponent implements OnInit {
   
@@ -35,7 +35,7 @@ export class ListContactsComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @Output() outEvent = new EventEmitter<number>();
   
-  search = true;
+  search = false;
   
   
    
@@ -96,10 +96,12 @@ export class ListContactsComponent implements OnInit {
   }
   
   openDialog(contact): void {
+    this.outEvent.emit(2);
     console.log(contact)
     this.dialog.open(ContactDetailsComponent, {
-      width: '550px',
-      height: '400px',
+      width: '580px',
+      height: '550px',
+      panelClass: 'matDialog',
       data: {contact}
     });
   }

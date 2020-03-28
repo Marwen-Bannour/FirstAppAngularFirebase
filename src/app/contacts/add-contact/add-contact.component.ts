@@ -28,7 +28,7 @@ export class AddContactComponent implements OnInit {
  
 
   ngOnInit() {
-     
+    this.contactService.fileUrl = null ;
   }
 
   onFileChanged(event) {

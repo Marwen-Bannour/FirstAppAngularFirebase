@@ -1,13 +1,13 @@
 
  
-<div class="searchDiv">
-  <mat-form-field appearance="outline" color="accent" @searchEnterLeave class="searchContact" *ngIf="search">
+<div class="searchDiv" @searchEnterLeave *ngIf="search">
+  <mat-form-field appearance="outline" color="accent"  class="searchContact" >
   <mat-label>Search</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
       <button color="accent" matSuffix mat-icon-button matTooltip="Close" matTooltipPosition="right" mat-icon-button (click)="searchClose()"><mat-icon >close</mat-icon></button>
     </mat-form-field>
-    </div>
-<div class="tab-list-contacts mat-elevation-z8" id="scrollTab">
+</div>
+<div class="tab-list-contacts mat-elevation-z3" id="scrollTab">
   
   <table mat-table [dataSource]="dataSource" matSort class="dataTab">
   
@@ -22,7 +22,7 @@
       <td mat-cell *matCellDef="let element" 
       (click)="openDialog(element)">
         
-          <div class="contact-picture"
+          <div class="contact-picture mat-elevation-z1"
              [ngStyle]="{ 'background-image': !element.photo
               ? 'url(../../../assets/img/profile.png)' 
               : 'url(' + element.photo + ')' }"
