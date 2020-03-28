@@ -14,14 +14,14 @@ import { ContactsService } from '../services/contacts.service';
         animate(500)
       ]),
       transition('* => void', [
-        animate(200, style({ transform: 'translateX(100%)' }))
+        animate(500, style({ transform: 'translateX(100%)' }))
       ])
     ])
   ]
 })
 export class ContactsComponent implements OnInit {
   cols : number = 2 ;
-  ActionEvent: String ;
+  ActionEvent: String = "" ;
   constructor( private contactService : ContactsService) { }
 
   ngOnInit() {
@@ -34,11 +34,17 @@ export class ContactsComponent implements OnInit {
     this.cols = 2 ;
     this.ActionEvent= null ;
     this.resetForm();
+    
   }
   receiveCols($event){ 
     console.log("receive: "+$event);
     this.cols = $event ;
     this.ActionEvent="edit";
+  }
+  receiveColsClose($event){ 
+    console.log("receive: "+$event);
+    this.cols = $event ;
+    this.ActionEvent="";
   }
   resetForm(){
     this.contactService.contactform.reset();
@@ -47,5 +53,6 @@ export class ContactsComponent implements OnInit {
           });
     this.contactService.fileUrl = null ;
     this.contactService.file= null ;
+    this.contactService.filePath = null;
   }
 }

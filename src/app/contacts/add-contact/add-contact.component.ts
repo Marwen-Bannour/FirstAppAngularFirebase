@@ -1,4 +1,4 @@
-import { Component, OnInit , Input } from '@angular/core';
+import { Component, OnInit , Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ContactsService } from 'src/app/services/contacts.service';
 import { Contact } from 'src/app/class/contact';
@@ -16,12 +16,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AddContactComponent implements OnInit {
 
   @Input() ActionEvent : string;
+  @Output() outEvent = new EventEmitter<number>();
 
   contactData : Contact ;
-  
   firebaseUrl = '';
-  
   contact = new Contact();
+  loading : boolean = false ;
   constructor(public contactService : ContactsService,
               private storage: AngularFireStorage,
               private _snackBar: MatSnackBar) { }
@@ -44,7 +44,7 @@ export class AddContactComponent implements OnInit {
 
   addContact(){
      if (this.contactService.contactform.valid) {
-       
+       this.loading = true ;
        if(!this.contactService.file){
       const data = {
         fullName : this.contactService.contactform.value['fullNameFormControl'],
@@ -52,10 +52,15 @@ export class AddContactComponent implements OnInit {
         phone : this.contactService.contactform.value['phoneFormControl'],
         photo :  null
       }
-      console.log(data);
-      this.contactService.addContact(data).then( res =>  this.openSnackBar("Contact was successfully added","OK"))
-      this.resetForm();
-    }
+      
+      this.contactService.addContact(data)
+      .then( () =>{
+         this.loading = false;
+         this.outEvent.emit(2);
+         this.resetForm();
+         this.openSnackBar("Contact was successfully added","OK") ;
+          })
+      }
     if(this.contactService.file){
       this.addContactWhithPhoto();
     }
@@ -72,47 +77,63 @@ export class AddContactComponent implements OnInit {
             fullName : this.contactService.contactform.value['fullNameFormControl'],
             mail : this.contactService.contactform.value['emailFormControl'],
             phone : this.contactService.contactform.value['phoneFormControl'],
-            photo :  url
+            photo :  url,
+            filePath : filePath
           }
         console.log(data);
-        this.contactService.addContact(data).then( res =>  this.openSnackBar("Contact was successfully added","OK"))
-        this.resetForm();
-        })
+        this.contactService.addContact(data).then( () => {
+          this.loading = false;
+          this.outEvent.emit(2);
+          this.resetForm();
+          this.openSnackBar("Contact was successfully added","OK");
+         })})
       })
     ).subscribe();
   }
   
  editContact(){
   if (this.contactService.contactform.valid) {
-       
+    this.loading = true ;
     
-   const data = {
+   const data:Contact = {
      id : this.contactService.contactform.value['idFormControl'],
      fullName : this.contactService.contactform.value['fullNameFormControl'],
      mail : this.contactService.contactform.value['emailFormControl'],
      phone : this.contactService.contactform.value['phoneFormControl'],
-     photo : this.contactService.contactform.value['photoFormControl']
+     photo : this.contactService.contactform.value['photoFormControl'],
+     filePath : this.contactService.filePath
+
    }
-   console.log(data);
+  
    
    if (data.photo == this.contactService.fileUrl){
-     this.contactService.editContact(data.id,data).then( val => 
+     this.contactService.editContact(data.id,data).then( () =>{
+      this.loading = false;
+       this.outEvent.emit(2);
+       this.resetForm();
        this.openSnackBar("Contact was successfully changed","OK")
-      )
-     }else{
-      var filePath = `${this.contactService.file.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
-      const fileRef = this.storage.ref(filePath);
-      this.storage.upload(filePath, this.contactService.file).snapshotChanges().pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe((url) => {
-            data.photo =  url;
-          this.contactService.editContact(data.id,data).then( val => 
-            this.openSnackBar("Contact was successfully changed","OK")
-          )
+     } 
+     )}else{
+      console.log(this.contactService.filePath)
+      this.storage.ref(this.contactService.filePath).delete().subscribe( ()=> {
+        var filePath = `${this.contactService.file.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+        const fileRef = this.storage.ref(filePath);
+        this.storage.upload(filePath, this.contactService.file).snapshotChanges().pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().subscribe((url) => {
+              data.photo =  url;
+              data.filePath = filePath ;
+              this.contactService.editContact(data.id,data).then( () =>
+              { this.loading = false;
+                this.outEvent.emit(2);
+                this.resetForm()
+                this.openSnackBar("Contact was successfully changed","OK")
+              } 
+             )})
          })
-        })
-      ).subscribe();
-    }
+        ).subscribe();
+      })
+}
   
    
  }
@@ -125,6 +146,7 @@ export class AddContactComponent implements OnInit {
           });
     this.contactService.fileUrl = null ;
     this.contactService.file= null ;
+    this.contactService.filePath =null;
   }
 
   openSnackBar(message: string, action: string) {

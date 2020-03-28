@@ -5,6 +5,8 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { ContactsService } from 'src/app/services/contacts.service';
 import {MatSort} from '@angular/material/sort';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { ContactDetailsComponent } from './contact-details/contact-details.component';
 
 
 @Component({
@@ -25,6 +27,7 @@ import { ToastrService } from 'ngx-toastr';
   ]
 })
 export class ListContactsComponent implements OnInit {
+  
   list:Contact[];
   displayedColumns : string[]=  ['photo', 'fullName','mail','phone', 'action'];
   dataSource = new MatTableDataSource(this.list);
@@ -32,12 +35,13 @@ export class ListContactsComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @Output() outEvent = new EventEmitter<number>();
   
-  search = false;
+  search = true;
   
   
    
   constructor(private contactServ: ContactsService,
-              private toastr:ToastrService) { }
+              private toastr:ToastrService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     
@@ -88,7 +92,16 @@ export class ListContactsComponent implements OnInit {
     this.contactServ.contactform.controls['phoneFormControl'].setValue(elm.phone) ;
     this.contactServ.contactform.controls['photoFormControl'].setValue(elm.photo) ;
     this.contactServ.fileUrl = elm.photo ;
+    this.contactServ.filePath = elm.filePath;
   }
- 
+  
+  openDialog(contact): void {
+    console.log(contact)
+    this.dialog.open(ContactDetailsComponent, {
+      width: '550px',
+      height: '400px',
+      data: {contact}
+    });
+  }
 }
 
