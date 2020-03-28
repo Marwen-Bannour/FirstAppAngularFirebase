@@ -15,7 +15,7 @@
     <ng-container matColumnDef="photo">
       <th mat-header-cell *matHeaderCellDef class="searchBtn" > 
         <button *ngIf="!search"  matTooltip="Search" matTooltipPosition="right" mat-icon-button (click)="searchOpen()">
-          <mat-icon>search</mat-icon>
+          <mat-icon class="searchIcon">search</mat-icon>
         </button>
       </th>
       
@@ -71,8 +71,7 @@
             <mat-icon>perm_identity</mat-icon>
             <span>Edit</span>
           </button>
-          
-          <button mat-menu-item (click)="onDelete(element.id)">
+          <button mat-menu-item (click)="openDialogDelete(element.id)" >
             <mat-icon>delete</mat-icon>
             <span>Delete</span>
           </button>

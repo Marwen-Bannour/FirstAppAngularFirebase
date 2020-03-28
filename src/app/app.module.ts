@@ -43,6 +43,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { AddContactComponent } from './contacts/add-contact/add-contact.component';
 import { ListContactsComponent } from './contacts/list-contacts/list-contacts.component';
 import { ContactDetailsComponent } from './contacts/list-contacts/contact-details/contact-details.component';
+import { DeleteContactComponent } from './contacts/list-contacts/delete-contact/delete-contact.component';
 
 
 
@@ -71,6 +72,7 @@ import { ContactDetailsComponent } from './contacts/list-contacts/contact-detail
     AddContactComponent,
     ListContactsComponent,
     ContactDetailsComponent,
+    DeleteContactComponent,
    
     
   ],

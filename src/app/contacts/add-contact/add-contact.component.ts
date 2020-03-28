@@ -2,7 +2,6 @@ import { Component, OnInit , Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { ContactsService } from 'src/app/services/contacts.service';
 import { Contact } from 'src/app/class/contact';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from "rxjs/operators";
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,14 +20,15 @@ export class AddContactComponent implements OnInit {
   contactData : Contact ;
   firebaseUrl = '';
   contact = new Contact();
-  loading : boolean = false ;
+  loading : boolean = false;
   constructor(public contactService : ContactsService,
               private storage: AngularFireStorage,
               private _snackBar: MatSnackBar) { }
  
 
   ngOnInit() {
-    this.contactService.fileUrl = null ;
+    if ( this.ActionEvent=="add"){
+    this.contactService.fileUrl = null ;}
   }
 
   onFileChanged(event) {
@@ -58,7 +58,7 @@ export class AddContactComponent implements OnInit {
          this.loading = false;
          this.outEvent.emit(2);
          this.resetForm();
-         this.openSnackBar("Contact was successfully added","OK") ;
+         this.openSnackBar("Contact was successfully ADDED","OK") ;
           })
       }
     if(this.contactService.file){
@@ -85,7 +85,7 @@ export class AddContactComponent implements OnInit {
           this.loading = false;
           this.outEvent.emit(2);
           this.resetForm();
-          this.openSnackBar("Contact was successfully added","OK");
+          this.openSnackBar("Contact was successfully ADDED","OK");
          })})
       })
     ).subscribe();
@@ -111,7 +111,7 @@ export class AddContactComponent implements OnInit {
       this.loading = false;
        this.outEvent.emit(2);
        this.resetForm();
-       this.openSnackBar("Contact was successfully changed","OK")
+       this.openSnackBar("Contact was successfully CHANGED","OK")
      } 
      )}else{
       console.log(this.contactService.filePath)
@@ -127,7 +127,7 @@ export class AddContactComponent implements OnInit {
               { this.loading = false;
                 this.outEvent.emit(2);
                 this.resetForm()
-                this.openSnackBar("Contact was successfully changed","OK")
+                this.openSnackBar("Contact was successfully CHANGED","OK")
               } 
              )})
          })
