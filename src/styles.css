@@ -36,4 +36,10 @@ color: #d50000;
 .Blue{
 color:    #3f51b5
 }
- 
+.matDialog .mat-dialog-container { 
+  padding: 0 !important;
+}
+.matDialog .mat-dialog-container{
+  box-shadow: none !important;
+  background: inherit !important;
+}

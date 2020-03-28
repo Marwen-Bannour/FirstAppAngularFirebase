@@ -67,7 +67,7 @@ button{
   border-radius: 50%;
   border-color: #e0e0e0;
   border-style: solid;
-  border-width: 2px;
+  border-width: 1px;
   margin: 8px;
 }
 
@@ -98,6 +98,10 @@ button{
 
 #contactPic:hover {
   border-color: #3f51b5;
+  
   cursor: pointer;
 }
+
+
+
 
