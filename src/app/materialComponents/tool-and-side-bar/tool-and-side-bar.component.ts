@@ -9,21 +9,14 @@ import{trigger, transition, animate, style} from '@angular/animations';
     trigger('anmt',[
         transition('void => *',[
           style({ opacity:0}),
-          animate(2000)])
+          animate(500)])
     ]),
     trigger('anmt1',[
       transition('void => *',[
         style({ opacity:0}),
-        animate(1000)])
+        animate(200)])
   ])
   ]
- /* animations:[
-    trigger('anmt',[
-        transition(':enter',[
-          style({transform:'translateX(-70%)' }),
-          animate(700)] )
-    ])
-  ]*/
 })
 export class ToolAndSideBarComponent implements OnInit {
  opened = false;

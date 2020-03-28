@@ -7,6 +7,8 @@ import {MatSort} from '@angular/material/sort';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
+import { DeleteContactComponent } from './delete-contact/delete-contact.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -24,7 +26,7 @@ import { ContactDetailsComponent } from './contact-details/contact-details.compo
         animate('400ms', style({ width: '0px',opacity: 0 })),
       ]),
     ])
-  ],
+  ]
 })
 export class ListContactsComponent implements OnInit {
   
@@ -41,7 +43,9 @@ export class ListContactsComponent implements OnInit {
    
   constructor(private contactServ: ContactsService,
               private toastr:ToastrService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              public dialogDelete: MatDialog,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
     
@@ -76,11 +80,9 @@ export class ListContactsComponent implements OnInit {
   }
 
   onDelete(id: string) {
-    if (confirm("Are you sure to delete this record?")) {
       this.contactServ.deleteContact(id);
-      this.toastr.warning('Deleted successfully','EMP. Register');
+      this.openSnackBar("Contact was successfully DELETED","OK")
     }
-  }
 
   edit(elm : Contact){
     this.outEvent.emit(3);
@@ -103,6 +105,19 @@ export class ListContactsComponent implements OnInit {
       height: '550px',
       panelClass: 'matDialog',
       data: {contact}
+    });
+  }
+  openDialogDelete(id: string) {
+    const dialogRef = this.dialog.open(DeleteContactComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){this.onDelete(id)}
+    });
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message,action, {
+      duration: 2000,
+      horizontalPosition:'center'
     });
   }
 }

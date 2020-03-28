@@ -101,6 +101,9 @@ button{
   
   cursor: pointer;
 }
+.searchIcon{
+  font-size: 25px !important;
+}
 
 
 
