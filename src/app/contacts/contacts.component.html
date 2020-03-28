@@ -27,10 +27,10 @@
       matTooltip="close"
       matTooltipPosition="below"
       (click)="closeAdd()"
-      color="warn"
-      ><mat-icon  class="icon-close-color">close</mat-icon></button>
+      color="accent"
+      ><mat-icon >close</mat-icon></button>
     </div>
-       <app-add-contact [ActionEvent]="ActionEvent"></app-add-contact>
+       <app-add-contact [ActionEvent]="ActionEvent" (outEvent)=" receiveColsClose($event)"></app-add-contact>
      </mat-grid-tile>
     
   </mat-grid-list>

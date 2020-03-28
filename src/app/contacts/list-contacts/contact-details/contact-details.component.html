@@ -1,0 +1,35 @@
+<div class="ModalsContact">
+  <div class="picture-content">
+     <div class="contact-picture mat-elevation-z5 "
+        [ngStyle]="{ 'background-image': !contactService.fileUrl ? 'url(../../../assets/img/profile.png)' : 'url(' + contactService.fileUrl + ')'}"
+                 >
+     </div>
+  </div>
+  <div class="mat-display-1 fullNameStyle">
+       {{data.contact.fullName}}
+  </div>
+   
+  <div class="picture-content data mat-elevation-z3">
+    <div class="mail">
+     <div class=" mat-headline">
+      <mat-icon>email</mat-icon> mail address
+     </div>
+     <div class="mat-subheading-2 mail"> 
+         {{data.contact.mail}}
+     </div>
+    </div>
+    <div class="phone">
+     <div class=" mat-headline">
+      <mat-icon>phone</mat-icon> phone Number
+    </div>
+    <div class="mat-subheading-2 phone"> 
+      {{data.contact.phone}}
+  </div>
+</div>
+ </div>
+
+ </div>
+
+<!-- <div class="button-close">
+  <mat-icon mat-icon-button color="accent" (click)="onNoClick()" style="cursor: pointer;" >close</mat-icon>
+</div> -->

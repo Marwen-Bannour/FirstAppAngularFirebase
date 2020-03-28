@@ -28,6 +28,7 @@ export class ContactsService {
       });
       formControls = this.contactform.controls;
       fileUrl;
+      filePath;
       file;
      
   constructor(private fireStore: AngularFirestore) { }

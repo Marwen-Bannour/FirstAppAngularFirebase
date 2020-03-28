@@ -96,4 +96,8 @@ button{
   z-index: 2000 !important;
 }
 
+#contactPic:hover {
+  border-color: #3f51b5;
+  cursor: pointer;
+}
 

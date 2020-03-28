@@ -42,6 +42,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AddContactComponent } from './contacts/add-contact/add-contact.component';
 import { ListContactsComponent } from './contacts/list-contacts/list-contacts.component';
+import { ContactDetailsComponent } from './contacts/list-contacts/contact-details/contact-details.component';
 
 
 
@@ -69,6 +70,7 @@ import { ListContactsComponent } from './contacts/list-contacts/list-contacts.co
     ContactsComponent,
     AddContactComponent,
     ListContactsComponent,
+    ContactDetailsComponent,
    
     
   ],
