@@ -101,7 +101,7 @@ export class ListContactsComponent implements OnInit {
     this.outEvent.emit(2);
     console.log(contact)
     this.dialog.open(ContactDetailsComponent, {
-      width: '580px',
+      minWidth: '580px',
       height: '550px',
       panelClass: 'matDialog',
       data: {contact}

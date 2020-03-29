@@ -14,14 +14,12 @@ user: firebase.User
   ) { }
 
   loginWhithGoogle(){
-     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).then(res =>{
-      if (res) { this.router.navigateByUrl('/home');}
-     }).catch(res=>{ console.log('erreur:'+res)}
-       
-     );  
+     this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider())
+     
   }
   logout(){
     this.afAuth.auth.signOut().then(res=>{
+      sessionStorage.removeItem('user');
       this.router.navigateByUrl('/');
     }).catch(res=>{
       console.log('erreur:'+res)
