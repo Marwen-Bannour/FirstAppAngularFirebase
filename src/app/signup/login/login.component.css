@@ -46,3 +46,7 @@ mat-card{
     text-align: -webkit-center;
   }
 
+  .matProgress{
+    width: 100%;
+    z-index: 5;
+  }

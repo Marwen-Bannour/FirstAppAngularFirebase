@@ -16,13 +16,15 @@ import { StepperComponent } from './materialComponents/stepper/stepper.component
 import { InputComponent } from './materialComponents/input/input.component';
 import { LoginComponent } from './signup/login/login.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const routes: Routes = [{
   path: '', component: LoginComponent},
   {
   path: 'home', component: ToolAndSideBarComponent,
-  children: [{path: '', component: HomeComponent},
+  children:
+   [{path: '', component: HomeComponent},
     {path: 'badge', component: BadgeComponent},
     {path: 'button', component: ButtonComponent},
     {path: 'button-toggle', component: ButtonToggleComponent},
@@ -36,7 +38,7 @@ const routes: Routes = [{
     {path: 'stepper', component: StepperComponent},
     {path: 'input', component: InputComponent},
     {path: 'contacts', component: ContactsComponent}
-  ]
+  ],canActivate:[AuthGuard],canDeactivate: [AuthGuard]
 }];
 
 @NgModule({

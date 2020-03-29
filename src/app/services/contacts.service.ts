@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Contact } from '../class/contact';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { AngularFireList } from '@angular/fire/database';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Injectable({
