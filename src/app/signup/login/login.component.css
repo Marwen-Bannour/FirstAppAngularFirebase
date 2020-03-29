@@ -1,5 +1,8 @@
 mat-card{
   width: 30%;
+  min-height: 40%;
+  display: grid;
+  align-items: center;
 }
   mat-grid-list{
     background: #3f51b5;
@@ -28,20 +31,10 @@ mat-card{
   background-color: rgba(0, 0, 0,0 );
   }
   
-  .googleImage{
-  
-    
-    background-image: url('../../../assets/img/pngguru.com.png');
-    background-color: rgba(255,255,255,0);
-    background-size: cover;
-    box-shadow: none;
-
-  }
-
   .logout{
     display: grid;
-
   }
+
   .spinner{
     text-align: -webkit-center;
   }
@@ -50,3 +43,41 @@ mat-card{
     width: 100%;
     z-index: 5;
   }
+  
+  .matStrokedBtn{
+    width: 80%;
+    margin-bottom: 1.34375em;
+  
+  }
+
+  .elmBtnGoogle{
+    display: flex;
+    justify-content: space-between;
+}
+.buttonText{
+  margin: 5px;
+}
+
+.buttonIconGoogle{
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url('../../../assets/img/pngguru.com.png');
+  background-color: rgba(255,255,255,0);
+  background-size: cover;
+  box-shadow: none;
+  width: 35px;
+  height: 35px;
+  margin: 5px;
+}
+.buttonIconFacebook{
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url('../../../assets/img/icons-facebook-button.png');
+  background-color: rgba(255,255,255,0);
+  background-size: cover;
+  box-shadow: none;
+  width: 35px;
+  height: 35px;
+  margin: 5px;
+}
+
