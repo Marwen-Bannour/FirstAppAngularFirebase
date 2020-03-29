@@ -15,8 +15,14 @@ user: firebase.User
 
   loginWhithGoogle(){
      this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider())
-     
-  }
+   }
+
+  loginWhithFacebook(){
+     this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider())
+   }
+
+
+   
   logout(){
     this.afAuth.auth.signOut().then(res=>{
       sessionStorage.removeItem('user');

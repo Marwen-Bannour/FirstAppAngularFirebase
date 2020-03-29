@@ -8,9 +8,11 @@ button{
 }
 
 .tab-list-contacts {
-    height: 460px;
+    height: 500px;
+    margin-top: 30px;
     overflow: auto;
     background-color: #ffffff;
+    min-width: 800px;
   }
   
   
@@ -75,17 +77,13 @@ button{
   z-index: 1010 !important;
 }
 .searchDiv{
-  z-index: 2020;
-  width: 100%;
-  position: absolute;
-  top: 30px;
-  text-align: end;
-  right: 12px;
+  width: 90%;
+  height: 60px;
 }
 .searchContact{
     margin-left: 10px;
     margin-top: 4px;
-    width: 60%;
+    width: 80%;
     font-size: 14px;
     z-index: 1010;
 }

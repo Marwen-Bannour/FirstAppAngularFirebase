@@ -1,14 +1,12 @@
-<div class="container" style="background-color: rgb(250, 250, 250);;">
-
-  
+<div class="contactComponent" >
  
-<mat-grid-list [cols]="cols" rowHeight="580px"  gutterSize="10px">
+<mat-grid-list  [cols]="cols" rowHeight="645px"  gutterSize="10px" style="z-index: 2;">
    
     <mat-grid-tile colspan="2">
       <div class="list-Contacts-container">
         
           <section >
-            <h1 class="mat-display-3" style="margin: 0 0 15px;">Contacts</h1>
+            <h1 class="mat-display-1" style="margin: 16px 0 0 30px; color: white; min-width: 800px;">Contacts List</h1>
           </section>
          <div *ngIf="cols != 3" class="button-add">
             <button mat-icon-button 
@@ -34,4 +32,7 @@
      </mat-grid-tile>
     
   </mat-grid-list>
+
+<div class="contactBgr2"></div>
+
 </div>

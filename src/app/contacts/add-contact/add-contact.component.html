@@ -1,11 +1,11 @@
 
-<div class="itemsCenter">
+<div class="itemsCenter" style="min-width: 300px;">
     <div class="add-contact mat-elevation-z6">
       
-        <div class="mat-display-1" style="margin: 30px 0 15px;" *ngIf="ActionEvent == 'add' ">
+        <div class="mat-display-1" style="margin: 20px 0px" *ngIf="ActionEvent == 'add' ">
               Add Contact
         </div>
-        <div class="mat-display-1" style="margin: 30px 0 15px;" *ngIf="ActionEvent == 'edit' ">
+        <div class="mat-display-1" style="margin: 20px 0px" *ngIf="ActionEvent == 'edit' ">
               Edit Contact
         </div>
             <form [formGroup]="contactService.contactform" >
@@ -15,7 +15,7 @@
               <input   style="display: none"
                 formControlName="photoFormControl"
               >
-                 <div class="contact-picture"
+                 <div class="contact-picture mat-elevation-z3"
                  [ngStyle]="{ 'background-image': !(contactService.fileUrl) ? 'url(../../../assets/img/profile.png)' : 'url(' + contactService.fileUrl + ')'}"
                  >
                    <div class="contact-picture-add">

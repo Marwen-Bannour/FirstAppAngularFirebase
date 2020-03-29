@@ -1,14 +1,16 @@
 
  
-<div class="searchDiv" @searchEnterLeave *ngIf="search">
-  <mat-form-field appearance="outline" color="accent"  class="searchContact" >
-  <mat-label>Search</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
-      <button color="accent" matSuffix mat-icon-button matTooltip="Close" matTooltipPosition="right" mat-icon-button (click)="searchClose()"><mat-icon >close</mat-icon></button>
-    </mat-form-field>
-</div>
-<div class="tab-list-contacts mat-elevation-z3" id="scrollTab">
-  
+
+<div class="tab-list-contacts mat-elevation-z5" id="scrollTab">
+
+  <div class="searchDiv" @searchEnterLeave *ngIf="search">
+    <mat-form-field appearance="outline" color="accent"  class="searchContact" >
+    <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+        <button color="accent" matSuffix mat-icon-button matTooltip="Close" matTooltipPosition="right" mat-icon-button (click)="searchClose()"><mat-icon >close</mat-icon></button>
+      </mat-form-field>
+  </div>
+
   <table mat-table [dataSource]="dataSource" matSort class="dataTab">
   
     <!-- Photo Column -->

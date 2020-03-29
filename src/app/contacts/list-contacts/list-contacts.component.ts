@@ -18,12 +18,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   animations:[
     trigger('searchEnterLeave', [
       transition(':enter', [
-        style({width: '0',opacity: 0}),
-        animate('600ms', style({ width: '100%',opacity: 1})),
+        style({width: '0'}),
+        animate('600ms', style({ width: '80%'})),
       ]),
       transition(':leave', [
-        style({ width: '100%',opacity: 1 }),
-        animate('400ms', style({ width: '0px',opacity: 0 })),
+        style({ width: '80%',opacity: 1 }),
+        animate('400ms', style({ width: '0px' })),
       ]),
     ])
   ]
