@@ -10,17 +10,21 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   Progress:boolean = true ;
+ 
   constructor( 
     private loginServ : LoginServService,
     private afAuth: AngularFireAuth,
     private router: Router
-  ) { }
+  ) { 
+    
+  }
 
   ngOnInit() {
 
     this.afAuth.authState.subscribe( user =>{
       if( user ){
-        sessionStorage.setItem('user', user.toJSON().toString() );
+        sessionStorage.setItem('user', JSON.stringify(user));
+        JSON.parse(sessionStorage.getItem('user'));
         this.router.navigateByUrl('/home')
         this.Progress= false
       }else (this.Progress = false)
@@ -29,14 +33,16 @@ export class LoginComponent implements OnInit {
 
   loginGoogle(){
     console.log('login...');
+    
     this.Progress = true ;
     this.loginServ.loginWhithGoogle();
-
   }
   loginFacebook(){
     console.log('login...');
+    
     this.Progress = true ;
     this.loginServ.loginWhithFacebook();
+    
 
   }
 

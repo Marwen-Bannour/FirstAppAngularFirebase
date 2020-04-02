@@ -3,23 +3,31 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
 import { Router } from '@angular/router';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class LoginServService {
-user: firebase.User
+  userData : any ;
+  account : string ;
+
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router
-  ) { }
+  ) {}
 
   loginWhithGoogle(){
-     this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider())
+     sessionStorage.setItem('account', "G");
+     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+     
    }
 
   loginWhithFacebook(){
-     this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider())
-   }
+    sessionStorage.setItem('account', "FB");
+    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
+     
+  }
 
 
    
