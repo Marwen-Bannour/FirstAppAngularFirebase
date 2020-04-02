@@ -27,7 +27,7 @@ export class ToolAndSideBarComponent implements OnInit {
     this.exSpinner=true;
     setTimeout(() =>{
       this.exSpinner = false ;
-    },1000)
+    },2000)
   }
  
 

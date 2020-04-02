@@ -11,8 +11,10 @@
 .card{
 padding: 1rem;
 margin-right: 2rem;
+margin-right: 2rem;
+margin-left: 2rem;
 height: 12rem;
-    width: 16rem;
+width: 16rem;
 }
 .cardList{
   overflow-x: scroll;
@@ -55,4 +57,11 @@ justify-content: center;
   
   background-color: rgba(179,179,179,1);
 	
+}
+.contactIcon{
+    height: 35px !important;
+    width: 35px !important;
+    font-size: 35px !important;
+    vertical-align: middle;
+    margin-right: 10px;
 }

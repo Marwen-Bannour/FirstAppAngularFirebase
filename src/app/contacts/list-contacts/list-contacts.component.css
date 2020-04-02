@@ -8,11 +8,10 @@ button{
 }
 
 .tab-list-contacts {
-    height: 500px;
-    margin-top: 30px;
-    overflow: auto;
-    background-color: #ffffff;
-    min-width: 800px;
+  height: 500px;
+  margin: 10px;
+  overflow: auto;
+  background-color: #ffffff;
   }
   
   
@@ -67,9 +66,6 @@ button{
   height: 38px;
   margin: 0 -16px 9px -16px;
   border-radius: 50%;
-  border-color: #e0e0e0;
-  border-style: solid;
-  border-width: 1px;
   margin: 8px;
 }
 
@@ -96,7 +92,10 @@ button{
 
 #contactPic:hover {
   border-color: #3f51b5;
-  
+  border-style: solid;
+  border-width: 2px;
+  width: 34px;
+  height: 34px;
   cursor: pointer;
 }
 .searchIcon{
