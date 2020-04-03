@@ -2,3 +2,17 @@
     background-color: #d32f2f;
     color: white;
 }
+.dialogContent{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 10px 0 24px;
+    position: relative;
+    margin: 0 0 24px;
+    min-height: 48px;
+    background-color: #fbe9e7;
+    color: #c62828;
+}
+button{
+    width: 100px !important;
+}

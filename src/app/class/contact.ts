@@ -4,5 +4,6 @@ export class Contact {
    mail: string;
    phone: string;
    photo: string;
-   filePath ;
+   userId:string;
+   filePath
 }

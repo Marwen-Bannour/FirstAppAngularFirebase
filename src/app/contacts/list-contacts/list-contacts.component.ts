@@ -1,14 +1,15 @@
 import { Component, OnInit, ViewChild, Output , EventEmitter  } from '@angular/core';
 import { Contact } from 'src/app/class/contact';
 import {MatTableDataSource} from '@angular/material/table';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { trigger, transition, style, animate, state } from '@angular/animations';
 import { ContactsService } from 'src/app/services/contacts.service';
 import {MatSort} from '@angular/material/sort';
-import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { ContactDetailsComponent } from './contact-details/contact-details.component';
 import { DeleteContactComponent } from './delete-contact/delete-contact.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 @Component({
@@ -25,47 +26,61 @@ import { MatSnackBar } from '@angular/material/snack-bar';
         style({ width: '80%',opacity: 1 }),
         animate('400ms', style({ width: '0px' })),
       ]),
-    ])
+    ]),
+    trigger('listInOut', [
+      state('in', style({ transform: 'translateY(0)',opacity:1})),
+      transition('void => *', [
+        style({ transform: 'translateY(100%)',opacity:0.5}),
+        animate(500)
+      ])
+    ]),
+    trigger('anm',[
+      transition('void => *',[
+        style({ opacity:0}),
+        animate(5000)])
+  ])
   ]
 })
 export class ListContactsComponent implements OnInit {
-  
+ 
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @Output() outEvent = new EventEmitter<number>();
+
   list:Contact[];
   displayedColumns : string[]=  ['photo', 'fullName','mail','phone', 'action'];
   dataSource = new MatTableDataSource(this.list);
-
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-  @Output() outEvent = new EventEmitter<number>();
-  
+  user: firebase.User;  
   search = false;
-  
-  
-   
+  loading : boolean = true;
+
   constructor(private contactServ: ContactsService,
-              private toastr:ToastrService,
+              private storage: AngularFireStorage,
               public dialog: MatDialog,
               public dialogDelete: MatDialog,
-              private _snackBar: MatSnackBar) { }
+              private _snackBar: MatSnackBar,
+              private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
-    
-    this.contactServ.getContacts().subscribe(data => { 
-      this.list = data.map(item => {
-      return {
-        id: item.payload.doc.id,
-        ... <any>item.payload.doc.data()
-      } as Contact;
+    this.afAuth.authState.subscribe( user=>{
+      this.user = user;
+      this.contactServ.getContacts(user.uid).subscribe(data => { 
+        this.list = data.map(item => {
+          return {
+            id: item.payload.doc.id,
+            ... <any>item.payload.doc.data()
+          } as Contact;
+        })
+        this.dataSource = new MatTableDataSource(this.list);
+        this.dataSource.sort = this.sort;
+        this.loading = false ;
+      })
     })
-      this.dataSource = new MatTableDataSource(this.list);
-      this.dataSource.sort = this.sort;
-      console.log(this.dataSource.data);
-    })
-    
-
   }
+
   searchOpen(){
     this.search = true;
   }
+
   searchClose(){
     this.search = false;
   }
@@ -79,14 +94,28 @@ export class ListContactsComponent implements OnInit {
     this.contactServ.formData = Object.assign({}, cnt);
   }
 
-  onDelete(id: string) {
-      this.contactServ.deleteContact(id);
-      this.openSnackBar("Contact was successfully DELETED","OK")
+  onDelete(elm : Contact) {
+    if (elm.filePath){
+      this.storage.ref(elm.filePath).delete().subscribe( ()=>
+       {this.contactServ.deleteContact(elm.id).then( () => 
+        this.openSnackBar("Contact was successfully DELETED","OK") )
+        .catch( ()=>
+         this.error()
+        );
+        
+      })
     }
+    if(elm.filePath == null){
+       this.contactServ.deleteContact(elm.id).then( () => 
+       this.openSnackBar("Contact was successfully DELETED","OK") )
+       .catch( ()=>
+        this.error()
+       );
+    }
+  }
 
   edit(elm : Contact){
     this.outEvent.emit(3);
-    console.log("edit function: "+ elm.id);
     this.contactServ.formData = Object.assign({}, elm);
     this.contactServ.contactform.controls['idFormControl'].setValue(elm.id) ;
     this.contactServ.contactform.controls['fullNameFormControl'].setValue(elm.fullName) ;
@@ -99,7 +128,6 @@ export class ListContactsComponent implements OnInit {
   
   openDialog(contact): void {
     this.outEvent.emit(2);
-    console.log(contact)
     this.dialog.open(ContactDetailsComponent, {
       minWidth: '580px',
       height: '550px',
@@ -107,18 +135,29 @@ export class ListContactsComponent implements OnInit {
       data: {contact}
     });
   }
-  openDialogDelete(id: string) {
-    const dialogRef = this.dialog.open(DeleteContactComponent);
 
+  openDialogDelete(elm : Contact) {
+    const dialogRef = this.dialog.open(DeleteContactComponent);
     dialogRef.afterClosed().subscribe(result => {
-      if (result){this.onDelete(id)}
+      if (result){this.onDelete(elm)}
     });
   }
+
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message,action, {
       duration: 2000,
-      horizontalPosition:'center'
+      horizontalPosition:'center',
+      verticalPosition:'top'
     });
   }
+
+  error(){
+    this._snackBar.open("ERROR","OK",{
+      duration: 4000,
+      horizontalPosition:'center',
+      verticalPosition:'top'
+    });
+  }
+
 }
 

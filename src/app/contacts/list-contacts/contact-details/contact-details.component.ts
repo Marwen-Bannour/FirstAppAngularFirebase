@@ -27,9 +27,8 @@ export class ContactDetailsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any ,
     public contactService : ContactsService) {}
   
-    ngOnInit(): void {
-      this.contactService.fileUrl = this.data.contact.photo ;
-    console.log(this.data)
+  ngOnInit(): void {
+    this.contactService.fileUrl = this.data.contact.photo ;
   }
 
   onNoClick(): void {

@@ -32,18 +32,13 @@ export class LoginComponent implements OnInit {
   }
 
   loginGoogle(){
-    console.log('login...');
-    
     this.Progress = true ;
     this.loginServ.loginWhithGoogle();
   }
+
   loginFacebook(){
-    console.log('login...');
-    
     this.Progress = true ;
     this.loginServ.loginWhithFacebook();
-    
-
   }
 
 }

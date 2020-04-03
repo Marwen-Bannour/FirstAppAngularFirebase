@@ -1,10 +1,7 @@
-<div class="contactComponent" >
- 
+<div  class="contactComponent" >
 <mat-grid-list  [cols]="cols" rowHeight="645px"  gutterSize="10px" style="z-index: 2;">
-   
     <mat-grid-tile colspan="2">
       <div class="list-Contacts-container">
-        
           <section >
             <h1 class="mat-display-1" style="margin: 16px 0 0 30px; color: white; min-width: 800px;">Contacts List</h1>
           </section>
@@ -29,10 +26,7 @@
       ><mat-icon >close</mat-icon></button>
     </div>
        <app-add-contact [ActionEvent]="ActionEvent" (outEvent)=" receiveColsClose($event)"></app-add-contact>
-     </mat-grid-tile>
-    
+  </mat-grid-tile>
   </mat-grid-list>
-
-<div class="contactBgr2"></div>
-
 </div>
+<div class="contactBgr2"></div>
