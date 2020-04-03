@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div @anm *ngIf="!list?.length" class="list-loading">
+  <div @anm *ngIf="!list?.length && !loading " class="list-loading">
       <div class="mat-headline" style="color: rgba(0,0,0,.26);">Hello {{user?.displayName}}<br>Please Add Your First CONTACT</div>
       
   </div>
