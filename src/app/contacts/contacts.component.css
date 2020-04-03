@@ -1,3 +1,7 @@
+mat-grid-list{
+z-index: 2;
+overflow: hidden;
+}
 .contactComponent
 {
     background-color: white;
