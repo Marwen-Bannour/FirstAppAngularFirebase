@@ -18,19 +18,16 @@ export class LoginServService {
   ) {}
 
   loginWhithGoogle(){
-     sessionStorage.setItem('account', "G");
-     this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
-     
-   }
-
-  loginWhithFacebook(){
-    sessionStorage.setItem('account', "FB");
-    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
+    sessionStorage.setItem('account', "G");
+    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
      
   }
 
+  loginWhithFacebook(){
+    sessionStorage.setItem('account', "FB");
+    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());  
+  }
 
-   
   logout(){
     this.afAuth.auth.signOut().then(res=>{
       sessionStorage.removeItem('user');
@@ -38,8 +35,6 @@ export class LoginServService {
     }).catch(res=>{
       console.log('erreur:'+res)
     });
-    
-
-
   }
+  
 }

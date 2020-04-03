@@ -1,17 +1,28 @@
 
  
 
-<div class="tab-list-contacts mat-elevation-z5" id="scrollTab">
+<div @listInOut class="tab-list-contacts mat-elevation-z5" id="scrollTab">
 
   <div class="searchDiv" @searchEnterLeave *ngIf="search">
-    <mat-form-field appearance="outline" color="accent"  class="searchContact" >
+    <mat-form-field appearance="outline" class="searchContact" >
     <mat-label>Search</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
         <button color="accent" matSuffix mat-icon-button matTooltip="Close" matTooltipPosition="right" mat-icon-button (click)="searchClose()"><mat-icon >close</mat-icon></button>
       </mat-form-field>
   </div>
+  
+  <div *ngIf="loading" class="list-loading">
+    <div class="spinnerLoading">
+    <mat-spinner diameter="10" [diameter]="50"></mat-spinner>
+    </div>
+  </div>
 
-  <table mat-table [dataSource]="dataSource" matSort class="dataTab">
+  <div @anm *ngIf="!list?.length" class="list-loading">
+      <div class="mat-headline" style="color: rgba(0,0,0,.26);">Hello {{user?.displayName}}<br>Please Add Your First CONTACT</div>
+      
+  </div>
+
+  <table mat-table [dataSource]="dataSource" matSort>
   
     <!-- Photo Column -->
     <ng-container matColumnDef="photo">
@@ -40,7 +51,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="fullName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header class="z-indexTab"> Full Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.fullName}} {{element.user?.displayName}}</td>
     </ng-container>
 
     <!-- Email Column -->
@@ -73,8 +84,8 @@
             <mat-icon>perm_identity</mat-icon>
             <span>Edit</span>
           </button>
-          <button mat-menu-item (click)="openDialogDelete(element.id)" >
-            <mat-icon>delete</mat-icon>
+          <button mat-menu-item (click)="openDialogDelete(element)" >
+            <mat-icon>delete_outline</mat-icon>
             <span>Delete</span>
           </button>
         </mat-menu>
@@ -87,6 +98,9 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
     class="tab-list-contacts-row"
     ></tr>
+    
     </table>
-   
+
+    
+
 </div>

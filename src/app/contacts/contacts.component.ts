@@ -37,12 +37,10 @@ export class ContactsComponent implements OnInit {
     
   }
   receiveCols($event){ 
-    console.log("receive: "+$event);
     this.cols = $event ;
     this.ActionEvent="edit";
   }
   receiveColsClose($event){ 
-    console.log("receive: "+$event);
     this.cols = $event ;
     this.ActionEvent="";
   }

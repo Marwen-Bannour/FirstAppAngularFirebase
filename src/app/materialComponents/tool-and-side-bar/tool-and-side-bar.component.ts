@@ -19,8 +19,10 @@ import{trigger, transition, animate, style} from '@angular/animations';
   ]
 })
 export class ToolAndSideBarComponent implements OnInit {
+
  opened = false;
  exSpinner
+ 
   constructor() { }
 
   ngOnInit() {

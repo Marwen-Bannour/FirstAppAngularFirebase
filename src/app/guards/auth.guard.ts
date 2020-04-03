@@ -15,7 +15,6 @@ export class AuthGuard implements CanActivate , CanDeactivate<LoginComponent> {
 
     
     if(sessionStorage.getItem('user')){
-
       return true;
     }
     sessionStorage.clear();
@@ -25,10 +24,8 @@ export class AuthGuard implements CanActivate , CanDeactivate<LoginComponent> {
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (sessionStorage.getItem('user') === null) {
-
       return true;
     } else {
-
       return false;
     }}
 

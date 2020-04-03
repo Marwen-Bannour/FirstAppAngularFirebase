@@ -8,8 +8,8 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 })
 export class ContactsService {
       
-      formData : Contact ;
-      contactform = new FormGroup({
+  formData : Contact ;
+  contactform = new FormGroup({
         idFormControl : new FormControl(''),
         fullNameFormControl : new FormControl('', [
           Validators.required    
@@ -25,26 +25,27 @@ export class ContactsService {
           ]),
           photoFormControl : new FormControl('')
       });
-      formControls = this.contactform.controls;
-      fileUrl;
-      filePath;
-      file;
+  formControls = this.contactform.controls;
+  fileUrl;
+  filePath;
+  file;
      
   constructor(private fireStore: AngularFirestore) { }
 
   addContact(contact){
-   return this.fireStore.collection('contacts').add(JSON.parse(JSON.stringify(contact)));
+    return this.fireStore.collection('contacts').add(JSON.parse(JSON.stringify(contact)));
   }
 
-  getContacts() {
-    return this.fireStore.collection('contacts').snapshotChanges();
+  getContacts(userid) {
+    return this.fireStore.collection('contacts', ref => ref.where('userId', '==', userid)).snapshotChanges();
   }
 
   deleteContact(id: string){
-    this.fireStore.doc('contacts/' + id).delete();
+    return this.fireStore.doc('contacts/' + id).delete();
   }
+
   editContact(id,data){
-   return this.fireStore.doc('contacts/' +id).update(data);
+    return this.fireStore.doc('contacts/' +id).update(data);
   }
   
 
