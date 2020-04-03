@@ -16,7 +16,12 @@ import { ContactsService } from '../services/contacts.service';
       transition('* => void', [
         animate(500, style({ transform: 'translateX(100%)' }))
       ])
-    ])
+    ]),
+    trigger('anm',[
+      transition('void => *',[
+        style({ opacity:0}),
+        animate(2000)])
+  ])
   ]
 })
 export class ContactsComponent implements OnInit {

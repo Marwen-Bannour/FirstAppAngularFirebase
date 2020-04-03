@@ -1,11 +1,11 @@
 <div  class="contactComponent" >
-<mat-grid-list  [cols]="cols" rowHeight="645px"  gutterSize="10px" style="z-index: 2;">
+<mat-grid-list  [cols]="cols" rowHeight="645px"  gutterSize="10px" style="">
     <mat-grid-tile colspan="2">
       <div class="list-Contacts-container">
           <section >
             <h1 class="mat-display-1" style="margin: 16px 0 0 30px; color: white; min-width: 800px;">Contacts List</h1>
           </section>
-         <div *ngIf="cols != 3" class="button-add">
+         <div @anm *ngIf="cols != 3" class="button-add">
             <button mat-icon-button 
             class="mat-elevation-z2"
             matTooltip="Add New Contact"

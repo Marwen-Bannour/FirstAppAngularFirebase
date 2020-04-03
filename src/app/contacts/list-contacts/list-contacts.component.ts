@@ -52,6 +52,7 @@ export class ListContactsComponent implements OnInit {
   user: firebase.User;  
   search = false;
   loading : boolean = true;
+  contactinf
 
   constructor(private contactServ: ContactsService,
               private storage: AngularFireStorage,
@@ -61,10 +62,13 @@ export class ListContactsComponent implements OnInit {
               private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
+    try{
     this.afAuth.authState.subscribe( user=>{
       this.user = user;
+      try{
       this.contactServ.getContacts(user.uid).subscribe(data => { 
         this.list = data.map(item => {
+          this.loading = false ;
           return {
             id: item.payload.doc.id,
             ... <any>item.payload.doc.data()
@@ -72,9 +76,14 @@ export class ListContactsComponent implements OnInit {
         })
         this.dataSource = new MatTableDataSource(this.list);
         this.dataSource.sort = this.sort;
-        this.loading = false ;
-      })
+        
+      })}catch(error){
+        this.error();
+      }
     })
+  }catch(error){
+    this.error();
+  }
   }
 
   searchOpen(){

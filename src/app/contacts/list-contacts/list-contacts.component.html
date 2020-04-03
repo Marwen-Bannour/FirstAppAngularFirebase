@@ -33,15 +33,16 @@
       </th>
       
       <td mat-cell *matCellDef="let element" 
-      (click)="openDialog(element)">
+     >
         
-          <div class="contact-picture mat-elevation-z1"
+      <button mat-icon-button  class="contact-picture mat-elevation-z1"
              [ngStyle]="{ 'background-image': !element.photo
               ? 'url(../../../assets/img/profile.png)' 
               : 'url(' + element.photo + ')' }"
               id="contactPic"
+              (click)="openDialog(element)"
               >
-           </div> 
+      </button> 
               
                  
                 </td>
