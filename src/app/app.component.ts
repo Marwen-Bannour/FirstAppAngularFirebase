@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { ConnectionService} from 'ng-connection-service'
 
 @Component({
   selector: 'app-root',
@@ -8,4 +8,24 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class AppComponent {
   title = 'ExpMaterialWithFireb';
+  
+  status = 'ONLINE';
+  isConnected = true;
+ 
+  constructor(private connectionService: ConnectionService) {
+  try{
+    this.connectionService.monitor().subscribe(isConnected => {
+      this.isConnected = isConnected;
+      if (this.isConnected) {
+        this.status = "ONLINE";
+        console.log(this.status);
+      }
+      else {
+        this.status = "OFFLINE";
+        console.log(this.status);
+      }
+    })}catch{this.isConnected==false}
+    
+  }
+ 
 }
