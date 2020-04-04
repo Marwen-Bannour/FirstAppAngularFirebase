@@ -70,13 +70,13 @@ export class AddContactComponent implements OnInit {
           this.resetForm();
           this.openSnackBar("Contact was successfully ADDED","OK") ;
         }).catch( ()=>
-        this.error()
+        this.error("Add contact.")
      )
       }
       if(this.contactService.file){
         this.addContactWhithPhoto();
       }
-    }else{console.log("errors");}
+    }
   }
 
   addContactWhithPhoto(){
@@ -99,7 +99,7 @@ export class AddContactComponent implements OnInit {
           this.resetForm();
           this.openSnackBar("Contact was successfully ADDED","OK");
          }).catch( ()=>
-         this.error()
+         this.error("Add contact..")
       )})
       })
     ).subscribe();
@@ -124,7 +124,7 @@ export class AddContactComponent implements OnInit {
           this.resetForm();
           this.openSnackBar("Contact was successfully CHANGED","OK")
         }).catch( ()=>
-           this.error()
+           this.error("Edit contact.")
         )
       }
 
@@ -143,7 +143,7 @@ export class AddContactComponent implements OnInit {
                     this.resetForm()
                     this.openSnackBar("Contact was successfully CHANGED","OK")
                   }).catch( ()=>
-                  this.error()
+                  this.error("Edit contacts..")
                )
                 })
               })
@@ -165,7 +165,7 @@ export class AddContactComponent implements OnInit {
                 this.resetForm()
                 this.openSnackBar("Contact was successfully CHANGED","OK")
               }).catch( ()=>
-              this.error()
+              this.error("Edit contacts...")
            )
             })
           })
@@ -192,8 +192,8 @@ export class AddContactComponent implements OnInit {
    });
   }
 
-  error(){
-    this._snackBar.open("ERROR","OK",{
+  error(msg){
+    this._snackBar.open("ERROR "+msg,"OK",{
       duration: 4000,
       horizontalPosition:'center',
       verticalPosition:'top'

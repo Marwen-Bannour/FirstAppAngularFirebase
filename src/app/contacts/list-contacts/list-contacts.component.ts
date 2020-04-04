@@ -65,9 +65,9 @@ export class ListContactsComponent implements OnInit {
     try{
     this.afAuth.authState.subscribe( user=>{
       this.user = user;
-      try{
-      this.contactServ.getContacts(user.uid).subscribe(data => { 
-        this.list = data.map(item => {
+      this.contactServ.getContacts(user.uid).subscribe(data => {
+        if (data.length)
+        {this.list = data.map(item => {
           this.loading = false ;
           return {
             id: item.payload.doc.id,
@@ -75,15 +75,19 @@ export class ListContactsComponent implements OnInit {
           } as Contact;
         })
         this.dataSource = new MatTableDataSource(this.list);
-        this.dataSource.sort = this.sort;
-        
-      })}catch(error){
-        this.error();
-      }
+        this.dataSource.sort = this.sort; }
+        else{
+          this.loading = false;
+          this.list= [];
+          this.dataSource = new MatTableDataSource(this.list);
+          this.dataSource.sort = this.sort;
+        }
+      })
     })
   }catch(error){
-    this.error();
+    this.error("Get list contacts..");
   }
+
   }
 
   searchOpen(){
@@ -109,7 +113,7 @@ export class ListContactsComponent implements OnInit {
        {this.contactServ.deleteContact(elm.id).then( () => 
         this.openSnackBar("Contact was successfully DELETED","OK") )
         .catch( ()=>
-         this.error()
+         this.error("Delete contact.")
         );
         
       })
@@ -118,7 +122,7 @@ export class ListContactsComponent implements OnInit {
        this.contactServ.deleteContact(elm.id).then( () => 
        this.openSnackBar("Contact was successfully DELETED","OK") )
        .catch( ()=>
-        this.error()
+        this.error("Delete contact..")
        );
     }
   }
@@ -160,8 +164,8 @@ export class ListContactsComponent implements OnInit {
     });
   }
 
-  error(){
-    this._snackBar.open("ERROR","OK",{
+  error(msg){
+    this._snackBar.open("ERROR"+msg,"OK",{
       duration: 4000,
       horizontalPosition:'center',
       verticalPosition:'top'

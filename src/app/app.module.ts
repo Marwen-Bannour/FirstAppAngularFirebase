@@ -44,6 +44,7 @@ import { AddContactComponent } from './contacts/add-contact/add-contact.componen
 import { ListContactsComponent } from './contacts/list-contacts/list-contacts.component';
 import { ContactDetailsComponent } from './contacts/list-contacts/contact-details/contact-details.component';
 import { DeleteContactComponent } from './contacts/list-contacts/delete-contact/delete-contact.component';
+import { ConnectionServiceModule} from 'ng-connection-service'
 
 
 
@@ -89,7 +90,8 @@ import { DeleteContactComponent } from './contacts/list-contacts/delete-contact/
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ConnectionServiceModule
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
