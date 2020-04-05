@@ -53,6 +53,7 @@ export class ListContactsComponent implements OnInit {
   search = false;
   loading : boolean = true;
   contactinf
+  searchVal: string ='';
 
   constructor(private contactServ: ContactsService,
               private storage: AngularFireStorage,
@@ -63,31 +64,34 @@ export class ListContactsComponent implements OnInit {
 
   ngOnInit() {
     try{
-    this.afAuth.authState.subscribe( user=>{
-      this.user = user;
-      this.contactServ.getContacts(user.uid).subscribe(data => {
-        if (data.length)
-        {this.list = data.map(item => {
-          this.loading = false ;
-          return {
-            id: item.payload.doc.id,
-            ... <any>item.payload.doc.data()
-          } as Contact;
-        })
-        this.dataSource = new MatTableDataSource(this.list);
-        this.dataSource.sort = this.sort; }
-        else{
-          this.loading = false;
-          this.list= [];
-          this.dataSource = new MatTableDataSource(this.list);
-          this.dataSource.sort = this.sort;
-        }
+      this.afAuth.authState.subscribe( user=>{
+        this.user = user;
+        this.getlistContact()
       })
-    })
-  }catch(error){
-    this.error("Get list contacts..");
+    }catch(error){
+      this.error("Get list contacts..");
+    }
   }
 
+  getlistContact(){
+    this.contactServ.getContacts(this.user.uid).subscribe(data => {
+      if (data.length)
+      {this.list = data.map(item => {
+        this.loading = false ;
+        return {
+          id: item.payload.doc.id,
+          ... <any>item.payload.doc.data()
+        } as Contact;
+      })
+      this.dataSource = new MatTableDataSource(this.list);
+      this.dataSource.sort = this.sort; }
+      else{
+        this.loading = false;
+        this.list= [];
+        this.dataSource = new MatTableDataSource(this.list);
+        this.dataSource.sort = this.sort;
+      }
+    })
   }
 
   searchOpen(){
@@ -96,6 +100,7 @@ export class ListContactsComponent implements OnInit {
 
   searchClose(){
     this.search = false;
+    this.getlistContact();
   }
 
   applyFilter(event: Event) {

@@ -6,7 +6,11 @@
   <div class="searchDiv" @searchEnterLeave *ngIf="search">
     <mat-form-field appearance="outline" class="searchContact" >
     <mat-label>Search</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
+        <input matInput
+        [(ngModel)]="searchVal" 
+        (keyup)="applyFilter($event)"
+        placeholder="Ex. ium"
+        autocomplete="off">
         <button color="accent" matSuffix mat-icon-button matTooltip="Close" matTooltipPosition="right" mat-icon-button (click)="searchClose()"><mat-icon >close</mat-icon></button>
       </mat-form-field>
   </div>
