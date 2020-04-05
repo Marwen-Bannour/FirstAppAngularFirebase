@@ -1,7 +1,7 @@
 <router-outlet ></router-outlet>
-<div *ngIf="!isConnected" class="connection-ERR">
-<div class="connection-MSG">
+
+<div @anmCheck *ngIf="!isConnected"  class="connection-MSG">
     <mat-icon>error_outline</mat-icon>
     <div class="mat-subheading-2">Please Check Your Connection</div>
 </div>
-</div>
+<div *ngIf="!isConnected" class="connection-ERR"></div>
