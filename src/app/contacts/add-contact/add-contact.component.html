@@ -38,6 +38,7 @@
                         <mat-label>Full name</mat-label>
                         <input matInput 
                         formControlName="fullNameFormControl"
+                        autocomplete="off"
                         >
                         <mat-error *ngIf="contactService.formControls.fullNameFormControl.hasError('required')">
                           Full name is <strong>required</strong>
@@ -48,7 +49,7 @@
                         <mat-label>Email</mat-label>
                         <input matInput 
                         formControlName="emailFormControl"
-                           
+                        autocomplete="off"  
                           >
                         <mat-error *ngIf="contactService.formControls.emailFormControl.hasError('email') && !contactService.formControls.emailFormControl.hasError('required')">
                           Please enter a valid email address
@@ -62,7 +63,7 @@
                         <mat-label>Phone Number</mat-label>
                         <input  matInput
                           formControlName="phoneFormControl"
-                           
+                          autocomplete="off"
                             >
                         <mat-error *ngIf="contactService.formControls.phoneFormControl.hasError('pattern') && !contactService.formControls.phoneFormControl.hasError('required') ">
                           Please enter a valid phone number
