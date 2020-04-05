@@ -128,7 +128,7 @@ export class AddContactComponent implements OnInit {
         )
       }
 
-      if( (!data.photo == this.contactService.fileUrl) && (this.contactService.filePath) ){
+      if( !(data.photo == this.contactService.fileUrl) && (this.contactService.filePath) ){
           this.storage.ref(this.contactService.filePath).delete().subscribe( ()=> {
             var filePath = `${this.contactService.file?.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
             const fileRef = this.storage.ref(filePath);
