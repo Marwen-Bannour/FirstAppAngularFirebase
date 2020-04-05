@@ -95,6 +95,7 @@ export class ListContactsComponent implements OnInit {
   }
 
   searchOpen(){
+    this.searchVal='';
     this.search = true;
   }
 
